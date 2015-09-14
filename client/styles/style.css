@@ -1,3 +1,59 @@
-p {
+@font-face {
+    font-family: 'Glyphicons Halflings';
+    src: url('../fonts/glyphicons-halflings-regular.eot');
+    src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
+}
+
+#tempTimeAtTop {
+    color: deepskyblue;
+
+}
+
+.room30 {
+    display: inline-block;
+    border-radius: 5px;
+}
+
+.room60 {
+    display: inline-block;
+}
+
+span {
+    vertical-align: text-top;
+}
+
+.availYellow {
+    color: orange;
+}
+
+.availRed {
     color: red;
 }
+
+.availGreen {
+    color: darkgreen;
+}
+
+#appTitle {
+    text-align: center;
+    color: #fff;
+}
+
+.col-sm-1 {
+    display: none;
+}
+
+.btn-disabled {
+    background-color: #b6d7a8;
+    color: #262626;
+}
+
+.btn-book {
+    background-color: #38761d;
+    color: #ffffff;
+}
+
+.jumbotron {
+    background-color: #41a8c6;
+}
+

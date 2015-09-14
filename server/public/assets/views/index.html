@@ -2,8 +2,9 @@
 <html>
 <head>
     <title>TPT Roomer</title>
-    <link rel="stylesheet"  href="/assets/styles/style.css"/>
     <link rel="stylesheet" href="/vendors/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet"  href="/assets/styles/style.css"/>
+
     <script type="text/javascript" src="/vendors/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="/assets/scripts/app.min.js"></script>
 
@@ -11,5 +12,21 @@
 </html>
 
 <body>
-<p>hey</p>
+<div class="container">
+    <div class="jumbotron row">
+        <div id="logo" class="col-xs-4"><img src="/assets/secret_images/TPT_PBS_REV_Desc_Crop.png" onerror="this.src='/assets/images/tpt_old_white.png'" alt="TPT Logo" height="100px"></div>
+        <h1 id="appTitle" class="col-xs-8">Squatter</h1>
+    </div>
+
+    <div id="rooms">
+        <div class="room30 container">
+            <h2 class="room text availYellow"> CR 4112 </h2>
+            <div class="btn-group-vertical" role="group">
+                <button class="btn btn-book"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>10:30</button>
+                <!--how to disable: http://stackoverflow.com/questions/17327668/best-way-to-disable-button-in-twitters-bootstrap -->
+                <button class="btn btn-disabled">Not Available</button>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
