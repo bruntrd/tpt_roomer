@@ -78,8 +78,11 @@ function ajaxCall(){
 function appendInfo(){
     buttonTime();
     for(var i = 0; i<roomArray.length; i++){
-        $('#rooms').append("<div><p>" + roomArray[i].roomNumber + "</p><button>" + thirtyTime + "</button><button>" + sixtyTime + "</button></div>");
+        //if the room is available for at least 1/2 hour then append it
+        //if the room is available for less than one hour append it else "unavailable"
+        $('#rooms').append("<div><p class='room text availYellow'>" + roomArray[i].roomNumber + "</p><button class='btn btn-book'><span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>" + thirtyTime + "</button><button class='btn btn-book'><span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>" + sixtyTime + "</button></div>");
     }
+
     //$.each(response, function(index, response){
     //    //$('#rooms').append("<div><button>" + thirtyTime + "</button><button>" + sixtyTime + "</button></div>");
     //});
@@ -110,66 +113,66 @@ $(document).ready(function(){
 
 var roomArray = [
     {
-        roomNumber:2161,
+        roomNumber:"CR " + 2161,
         capacity: 10,
         computer: true
     },
     {
-        roomNumber:3212,
+        roomNumber: "CR " + 3212,
         capacity: 10,
         computer: true
     },
     {
-        roomNumber:3487,
+        roomNumber: "CR " + 3487,
         capacity: 4,
         computer: false
     },
     {
-        roomNumber:4112,
+        roomNumber: "CR " + 4112,
         capacity: 4,
         computer: false
     },
     {
-        roomNumber:4141,
+        roomNumber: "CR " + 4141,
         capacity: 4,
         computer: false
     },
     {
-        roomNumber:4181,
+        roomNumber:"CR " + 4181,
         capacity: 8,
         computer: true
     },
     {
-        roomNumber:4211,
+        roomNumber:"CR " + 4211,
         capacity: 4,
         computer: false
     },
     {
-        roomNumber:4245,
+        roomNumber:"CR " + 4245,
         capacity: 111,
         computer: "uknown"
     },
     {
-        roomNumber:4261,
+        roomNumber:"CR " + 4261,
         capacity: 4,
         computer: false
     },
     {
-        roomNumber:4312,
+        roomNumber:"CR " + 4312,
         capacity: 6,
         computer: false
     },{
-        roomNumber:4416,
+        roomNumber:"CR " + 4416,
         capacity: 8,
         computer: false
     },
     {
-        roomNumber:4487,
+        roomNumber:"CR " + 4487,
         capacity: 6,
         computer: false
     },
     {
-        roomNumber:4541,
+        roomNumber:"CR " + 4541,
         capacity: 10,
         computer: true
     },
