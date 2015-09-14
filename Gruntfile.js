@@ -19,7 +19,7 @@ module.exports = function(grunt){
                 src: [
                     "jquery/dist/jquery.js",
                     "jquery/dist/jquery.min.js",
-                    "jquery/dist.min.map"
+                    "jquery/dist/jquery.min.map"
                 ],
                 "dest": "server/public/vendors/"
             },
@@ -28,6 +28,14 @@ module.exports = function(grunt){
                 cwd: "node_modules/",
                 src: [
                     "bootstrap/dist/css/bootstrap.min.css"
+                ],
+                "dest": "server/public/vendors/"
+            },
+            glyphicons: {
+                expand: true,
+                cwd: "node_modules/",
+                src: [
+                    "bootstrap/dist/fonts/**"
                 ],
                 "dest": "server/public/vendors/"
             },
@@ -44,7 +52,7 @@ module.exports = function(grunt){
                     "styles/style.css"
                 ],
                 "dest": "server/public/assets"
-            },
+            }
         }
     });
 

@@ -2,8 +2,9 @@
 <html>
 <head>
     <title>TPT Roomer</title>
-    <link rel="stylesheet"  href="/assets/styles/style.css"/>
     <link rel="stylesheet" href="/vendors/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet"  href="/assets/styles/style.css"/>
+
     <script type="text/javascript" src="/vendors/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="/assets/scripts/app.min.js"></script>
 
@@ -12,173 +13,21 @@
 
 <body>
 <div class="container">
-    <div id="tempTimeAtTop">
-        <p>8:10am</p>
-    </div>
-    <div class="jumbotron">
-        <h1 id="appTitle">TPT Roomer</h1>
-    </div>
-    <div id="sorter">
-        <div class="dropdown sortie">
-            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Floor 4
-                <span class="caret"></span></button>
-            <ul class="dropdown-menu">
-                <li><a href="#">All Floors</a></li>
-                <li><a href="#">Floor 1</a></li>
-                <li><a href="#">Floor 2</a></li>
-                <li><a href="#">Floor 3</a></li>
-                <li><a href="#">Floor 4</a></li>
-            </ul>
-        </div>
-        <div id="sortBy" class="sortie">
-            <p>sort by: <a href='#'>Availability</a></p>
-        </div>
+    <div class="jumbotron row">
+        <div id="logo" class="col-xs-4"><img src="/assets/secret_images/TPT_PBS_REV_Desc_Crop.png" onerror="this.src='/assets/images/tpt_old_white.png'" alt="TPT Logo" height="100px"></div>
+        <h1 id="appTitle" class="col-xs-8">Squatter</h1>
     </div>
 
     <div id="rooms">
-        <!--<div>
-            <button class="room">-</button>
-            <h2 class="room text"> CR 4112 </h2>
-            <h2 class="room text availYellow"> Available until 9:00 </h2>
-            <button class="room btn btn-primary" data-toggle="modal" data-target="#myModal">BOOK</button>
-            <div>
-                <h4>9:00 - 10:00 Kris</h4>
-                <h4>12:00 - 12:30 Jerry</h4>
-                <h4>1:00 - 1:45 Alphy</h4>
-            </div>
-        </div>-->
-        <span class="col-sm-12">
-            <button class="room col-md-1 hidden-sm">+</button>
-            <h2 class="room text col-sm-4"> CR 4141 </h2>
-            <h2 class="room text availGreen col-sm-4"> Available all Day </h2>
-            <button class="room btn btn-primary col-sm-3">BOOK</button>
-        </span>
-        <!--<div>
-            <button class="room">+</button>
-            <h2 class="room text"> CR 4181 </h2>
-            <h2 class="room text availRed"> In Use until 8:30 </h2>
-            <button class="room btn btn-primary">BOOK</button>
-        </div>
-        <div>
-            <button class="room">+</button>
-            <h2 class="room text"> CR 4211 </h2>
-            <h2 class="room text availYellow"> Available until 8:30 </h2>
-            <button class="room btn btn-primary">BOOK</button>
-        </div>
-        <div>
-            <button class="room">+</button>
-            <h2 class="room text"> CR 4211 </h2>
-            <h2 class="room text availGreen"> Available until 12:30 </h2>
-            <button class="room btn btn-primary">BOOK</button>
-        </div>
-        <div>
-            <button class="room">+</button>
-            <h2 class="room text"> CR 4245 </h2>
-            <h2 class="room text availGreen"> Available all Day </h2>
-            <button class="room btn btn-primary">BOOK</button>
-        </div>
-        <div>
-            <button class="room">+</button>
-            <h2 class="room text"> CR 4261 </h2>
-            <h2 class="room text availRed"> In Use until 8:45 </h2>
-            <button class="room btn btn-primary">BOOK</button>
-        </div>
-        <div>
-            <button class="room">+</button>
-            <h2 class="room text"> CR 4312 </h2>
-            <h2 class="room text availGreen"> Available until 11:00 </h2>
-            <button class="room btn btn-primary">BOOK</button>
-        </div>
-        <div>
-            <button class="room">+</button>
-            <h2 class="room text"> CR 4416 </h2>
-            <h2 class="room text availGreen"> Available until 3:30 </h2>
-            <button class="room btn btn-primary">BOOK</button>
-        </div>
-        <div>
-            <button class="room">+</button>
-            <h2 class="room text"> CR 4487 </h2>
-            <h2 class="room text availGreen"> Available All Day </h2>
-            <button class="room btn btn-primary">BOOK</button>
-        </div>
-        <div>
-            <button class="room">+</button>
-            <h2 class="room text"> CR 4541 </h2>
-            <h2 class="room text availRed"> In Use until 9:30 </h2>
-            <button class="room btn btn-primary">BOOK</button>
-        </div>
-    </div>-->
-</div>
-
-<div id="myModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Book RM 2015</h4>
-            </div>
-            <div class="modal-body">
-                <input type="text" name="nameField" placeholder="Name"></input></br>
-                <div class="dropdown sortie room">
-                    <h3>Start Time: </h3>
-                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">8:00
-                        <span class="caret"></span></button>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">8:00</a></li>
-                        <li><a href="#">8:30</a></li>
-                        <li><a href="#">9:00</a></li>
-                        <li><a href="#">9:30</a></li>
-                        <li><a href="#">10:00</a></li>
-                        <li><a href="#">10:30</a></li>
-                        <li><a href="#">11:00</a></li>
-                        <li><a href="#">11:30</a></li>
-                        <li><a href="#">12:00</a></li>
-                        <li><a href="#">12:30</a></li>
-                        <li><a href="#">1:00</a></li>
-                        <li><a href="#">1:30</a></li>
-                        <li><a href="#">2:00</a></li>
-                        <li><a href="#">2:30</a></li>
-                        <li><a href="#">3:00</a></li>
-                        <li><a href="#">3:30</a></li>
-                        <li><a href="#">4:00</a></li>
-                        <li><a href="#">4:30</a></li>
-                    </ul>
-                </div>
-
-                <div class="dropdown sortie room">
-                    <h3>End Time: </h3>
-                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">9:00
-                        <span class="caret"></span></button>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">8:30</a></li>
-                        <li><a href="#">9:00</a></li>
-                        <li><a href="#">9:30</a></li>
-                        <li><a href="#">10:00</a></li>
-                        <li><a href="#">10:30</a></li>
-                        <li><a href="#">11:00</a></li>
-                        <li><a href="#">11:30</a></li>
-                        <li><a href="#">12:00</a></li>
-                        <li><a href="#">12:30</a></li>
-                        <li><a href="#">1:00</a></li>
-                        <li><a href="#">1:30</a></li>
-                        <li><a href="#">2:00</a></li>
-                        <li><a href="#">2:30</a></li>
-                        <li><a href="#">3:00</a></li>
-                        <li><a href="#">3:30</a></li>
-                        <li><a href="#">4:00</a></li>
-                        <li><a href="#">4:30</a></li>
-                        <li><a href="#">5:00</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Book</button>
+        <div class="room30 container">
+            <h2 class="room text availYellow"> CR 4112 </h2>
+            <div class="btn-group-vertical" role="group">
+                <button class="btn btn-book"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>10:30</button>
+                <!--how to disable: http://stackoverflow.com/questions/17327668/best-way-to-disable-button-in-twitters-bootstrap -->
+                <button class="btn btn-disabled">Not Available</button>
             </div>
         </div>
-
     </div>
 </div>
-</div>
+
 </body>
