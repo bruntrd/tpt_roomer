@@ -62,6 +62,17 @@ function buttonTime(){
     console.log(timeArray);
 }
 
+//function roomConfirmation(){
+//    $.ajax({
+//        url: skdjf,
+//        success: function(response){
+//            confirmationAlert();
+//        },
+//        error: function(request){
+//            errorAlert();
+//        }
+//    })
+//}
 
 function ajaxCall(){
     $.ajax({
@@ -74,13 +85,45 @@ function ajaxCall(){
         }
     });
 }
+function customConfirmationAlert(msg,duration)
+{
+    var styler = document.createElement("div");
+    styler.setAttribute("style","border: solid 5px Red;width:auto;height:auto;top:50%;left:40%;background-color:#444;color:Silver;position:fixed");
+    styler.innerHTML = "<h1>"+msg+"</h1>";
+    setTimeout(function()
+    {
+        styler.parentNode.removeChild(styler);
+    },duration);
+    document.body.appendChild(styler);
+}
+function confirmationAlert()
+{
+    customConfirmationAlert("You have booked" + roomArray[i].roomNumber + "through" + thirtyTime,"5000");
+}
+
+function customErrorAlert(msg,duration)
+{
+    var styler = document.createElement("div");
+    styler.setAttribute("style","border: solid 5px Red;width:auto;height:auto;top:50%;left:40%;background-color:#444;color:Silver;position:fixed");
+    styler.innerHTML = "<h1>"+msg+"</h1>";
+    setTimeout(function()
+    {
+        styler.parentNode.removeChild(styler);
+    },duration);
+    document.body.appendChild(styler);
+}
+function errorAlert()
+{
+    customErrorAlert("This is the error alert","5000");
+}
+
 
 function appendInfo(){
     buttonTime();
     for(var i = 0; i<roomArray.length; i++){
         //if the room is available for at least 1/2 hour then append it
         //if the room is available for less than one hour append it else "unavailable"
-        $('#rooms').append("<div><p class='room text availYellow'>" + roomArray[i].roomNumber + "</p><button class='btn btn-book'><span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>" + thirtyTime + "</button><button class='btn btn-book'><span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>" + sixtyTime + "</button></div>");
+        $('#rooms').append("<div id=''><p class='room text availYellow'>" + roomArray[i].roomNumber + "</p><button class='thirty btn btn-book'><span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>" + thirtyTime + "</button><button class='sixty btn btn-book'><span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>" + sixtyTime + "</button></div>");
     }
 
     //$.each(response, function(index, response){
@@ -90,11 +133,14 @@ function appendInfo(){
 
 
 $(document).ready(function(){
-
+    //confirmationAlert();
     buttonTime();
     appendInfo();
 //console.log(new Date().getTime());
     //$('#rooms').append("<div><button>" + thirtyTime + "</button><button>" + sixtyTime + "</button></div>");
+    $('#rooms').on('click', '.thirty', function(){
+        console.log(confirmationAlert());
+    });
 
 }); // end document ready
 
@@ -190,6 +236,6 @@ var roomArray = [
         roomNumber:"Training Room",
         capacity: 16,
         computer: true
-    },
+    }
 
 ];
