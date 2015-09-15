@@ -69,10 +69,10 @@ function roomConfirmationThirty(){
         //this needs to book a room for 30 min. via google calendar
         url: skdjf,
         success: function(response){
-            confirmationThirtyAlert();
+            confirmationThirtyAlert($(this));
         },
         error: function(request){
-            errorAlert();
+            errorAlert($(this));
         }
     })
 }
@@ -83,10 +83,10 @@ function roomConfirmationSixty(){
         //this needs to book a room for 60 min. via google calendar
         url: skdjf,
         success: function(response){
-            confirmationSixtyAlert();
+            confirmationSixtyAlert($(this));
         },
         error: function(request){
-            errorAlert();
+            errorAlert($(this));
         }
     })
 }
@@ -118,30 +118,32 @@ function customConfirmationAlert(msg,duration) {
 }
 
 // confirms a ~30 minute meeting has been booked
-function confirmationThirtyAlert() {
-    customConfirmationAlert("You have booked" + "through" + thirtyTime,"4000");
+function confirmationThirtyAlert(room) {
+    customConfirmationAlert("You have booked " + room.parent().attr('id') + " through " + thirtyTime,"4000");
 }
 
 // confirms a ~60 minute meeting has been booked
-function confirmationSixtyAlert(){
-    customConfirmationAlert("You have booked" + "through" + sixtyTime, "4000");
+function confirmationSixtyAlert(room){
+    customConfirmationAlert("You have booked " + room.parent().attr('id') +  " through " + sixtyTime, "4000");
+
+
 }
 
 // custom dialogue box for error alert
-function customErrorAlert(msg,duration) {
-    var styler = document.createElement("div");
-    styler.setAttribute("style","border: solid 5px Red;width:auto;height:auto;top:50%;left:40%;background-color:#444;color:Silver;position:fixed");
-    styler.innerHTML = "<h1>"+msg+"</h1>";
-    setTimeout(function()
-    {
-        styler.parentNode.removeChild(styler);
-    },duration);
-    document.body.appendChild(styler);
-}
+//function customErrorAlert(msg,duration) {
+//    var styler = document.createElement("div");
+//    styler.setAttribute("style","border: solid 5px Red;width:auto;height:auto;top:50%;left:40%;background-color:#444;color:Silver;position:fixed");
+//    styler.innerHTML = "<h1>"+msg+"</h1>";
+//    setTimeout(function()
+//    {
+//        styler.parentNode.removeChild(styler);
+//    },duration);
+//    document.body.appendChild(styler);
+//}
 
 // error message if someone tries to book a room that has JUST been booked by someone else.
-function errorAlert() {
-    customErrorAlert("Sorry!" + "conference room number" + "was booked by someone else since you loaded the page.  Please choose a different conference room.","4000");
+function errorAlert(room) {
+    alert("Sorry! " + room.parent().attr('id') + " was booked by someone else since you loaded the page.  Please choose a different conference room.","4000");
 }
 
 // loops through room array to append available conference rooms to the page
@@ -150,7 +152,10 @@ function appendInfo(){
     for(var i = 0; i<roomArray.length; i++){
         //if the room is available for at least 1/2 hour then append it
         //if the room is available for less than one hour append it else "unavailable"
-        $('#rooms').append("<div><p class='room text availYellow'>" + roomArray[i].roomNumber + "</p><button class='thirty btn btn-book'><span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>" + thirtyTime + "</button><button class='sixty btn btn-book'><span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>" + sixtyTime + "</button></div>");
+        var someP = $("</p>", {
+            class: "room text availYellow"
+        });
+        $('#rooms').append("<div id='" + roomArray[i].roomNumber + "'><p class='room text availYellow'>" + roomArray[i].roomNumber + "</p><button class='thirty btn btn-book'><span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>" + thirtyTime + "</button><button class='sixty btn btn-book'><span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>" + sixtyTime + "</button></div>");
     }
 }
 
@@ -162,11 +167,11 @@ $(document).ready(function(){
     appendInfo();
 
     $('#rooms').on('click', ".thirty", function(){
-        confirmationThirtyAlert();
+        confirmationThirtyAlert($(this));
         //roomConfirmationThirty();
     });
     $('#rooms').on('click', ".sixty", function(){
-        confirmationSixtyAlert();
+        confirmationSixtyAlert($(this));
         //roomConfirmationSixty();
     });
 
