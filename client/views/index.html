@@ -1,7 +1,10 @@
 <!doctype html>
 <html>
 <head>
-    <title>TPT Roomer</title>
+    <title>TPT Squatter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+    <!--<meta name="viewport" content="width=600">-->
     <link rel="stylesheet" href="/vendors/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet"  href="/assets/styles/style.css"/>
 
@@ -9,24 +12,35 @@
     <script type="text/javascript" src="/assets/scripts/app.min.js"></script>
 
 </head>
-</html>
 
 <body>
 <div class="container">
     <div class="jumbotron row">
-        <div id="logo" class="col-xs-4"><img src="/assets/secret_images/TPT_PBS_REV_Desc_Crop.png" onerror="this.src='/assets/images/tpt_old_white.png'" alt="TPT Logo" height="100px"></div>
+        <div id="logo" class="col-xs-4"><img id="logoimg" src="/assets/secret_images/TPT_PBS_REV_BL_Desc_Crop.png" onerror="this.src='/assets/images/tpt_old_white.png'" alt="TPT Logo"></div>
         <h1 id="appTitle" class="col-xs-8">Squatter</h1>
     </div>
 
     <div id="rooms">
-        <div class="room30 container">
-            <h2 class="room text availYellow"> CR 4112 </h2>
-            <div class="btn-group-vertical" role="group">
-                <button class="btn btn-book"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>10:30</button>
+        <div class="room30 container row">
+            <div class="roomInfo col-md-6 col-sm-6 col-xs-6">
+                <h2 class="room text availYellow"> CR 4112 </h2>
+                <div class="icons row">
+                    <div class="theCapacityNum col-md-6 col-sm-6 col-xs-6">30 </div>
+                    <img src="/assets/images/computer.svg" class="computerStatusIcon col-md-6 col-sm-6 col-xs-6" onerror="/assets/images/computer.png">
+                </div>
+
+
+
+            </div>
+            <div class="bookers btn-group col-md-6 col-sm-6 col-xs-6" role="group">
+                <button class="btn btn-book bookerA"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>10:30</button>
                 <!--how to disable: http://stackoverflow.com/questions/17327668/best-way-to-disable-button-in-twitters-bootstrap -->
-                <button class="btn btn-disabled">Not Available</button>
+                <button class="btn btn-disabled bookerB">Not Available</button>
             </div>
         </div>
     </div>
 </div>
 </body>
+</html>
+
+<!--<img src="/assets/images/numberContainer.svg" class="capacityBackground col-md-4 col-sm-4 col-xs-4" onerror="/assets/images/numberContainer.png">-->

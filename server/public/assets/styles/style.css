@@ -4,17 +4,36 @@
     src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
 }
 
-#tempTimeAtTop {
-    color: deepskyblue;
-
+body {
+    background-color: #000;
 }
 
-.room30 {
-    display: inline-block;
+#tempTimeAtTop {
+    color: deepskyblue;
+}
+
+#logoimg {
+    width: 125%;
+}
+
+#appTitle {
+    text-align: center;
+    color: #fff;
+    font-size: 13.5vw;
+}
+
+#logoimg,#appTitle {
+    margin-top: 0;
+    vertical-align: top;
+}
+
+.room30,.room60 {
+    border-radius: 5px;
+    background-color: #41a8c6;
 }
 
 .room60 {
-    display: inline-block;
+
 }
 
 span {
@@ -33,11 +52,6 @@ span {
     color: darkgreen;
 }
 
-#appTitle {
-    text-align: center;
-    color: #fff;
-}
-
 .col-sm-1 {
     display: none;
 }
@@ -53,6 +67,55 @@ span {
 }
 
 .jumbotron {
-    background-color: #41a8c6;
+    background-color: #000;
 }
 
+.bookers {
+    /*float:right;*/
+}
+
+.computerStatusIcon {
+    width: 3em;
+    padding: 1px;
+}
+
+.theCapacityNum {
+    text-align: right;
+    color: #41a8c6;
+    background-image: url(../images/numberContainer.svg);
+    background-repeat: no-repeat;
+    padding: 1px;
+    height: 42px;
+    background-position: right;
+    font-size: 36px;
+}
+
+.capacity {
+    position: relative;
+}
+
+.capacityBackground {
+    height: 3em;
+
+}
+
+@media (max-width: 600px) {
+    .bookers {
+        display: inline-block;
+        vertical-align: middle;
+        /*float: right;*/
+    }
+    .bookerA {
+        display: block;
+        float: none;
+        width: 100%;
+        max-width: 100%;
+    }
+    .bookerB {
+        display: block;
+        float: none;
+        width: 100%;
+        max-width: 100%;
+    }
+
+}
