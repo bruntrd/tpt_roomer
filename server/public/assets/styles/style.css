@@ -1,20 +1,17 @@
 @font-face {
-    font-family: 'Glyphicons Halflings';
-    src: url('../fonts/glyphicons-halflings-regular.eot');
-    src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
+    font-family: GothaMed;
+    src: url(../fonts/GothaMed.ttf);
 }
 
 body {
     background-color: #000;
+    font-family: GothaMed, serif;
 }
 
 #tempTimeAtTop {
     color: deepskyblue;
 }
 
-#logoimg {
-    width: 125%;
-}
 
 #appTitle {
     text-align: center;
@@ -22,9 +19,10 @@ body {
     font-size: 13.5vw;
 }
 
-#logoimg,#appTitle {
-    margin-top: 0;
+#logoimg {
     vertical-align: top;
+    width: 95%;
+
 }
 
 .room30,.room60 {
@@ -32,8 +30,12 @@ body {
     background-color: #41a8c6;
 }
 
-.room60 {
+.room {
+    margin: 6px auto;
+}
 
+.icons {
+    margin: 6px 0;
 }
 
 span {
@@ -68,15 +70,18 @@ span {
 
 .jumbotron {
     background-color: #000;
+    padding: 15px 0;
+    margin-bottom: 2px;
 }
 
 .bookers {
-    /*float:right;*/
+    margin-top: 12px
 }
 
 .computerStatusIcon {
     width: 3em;
     padding: 1px;
+    margin-right: 5px;
 }
 
 .theCapacityNum {
@@ -84,10 +89,12 @@ span {
     color: #41a8c6;
     background-image: url(../images/numberContainer.svg);
     background-repeat: no-repeat;
-    padding: 1px;
+    padding: 0 1px;
     height: 42px;
     background-position: right;
-    font-size: 36px;
+    font-size: 30px;
+    display: inline-block;
+    width: 84px;
 }
 
 .capacity {
