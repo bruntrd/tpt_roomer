@@ -1,12 +1,13 @@
-console.log("this is a console log");
-//variables
+////////// variables //////////
 var currentTime = new Date();
 var minutes = currentTime.getMinutes();
 var thirtyTime;
 var sixtyTime;
 var timeArray = [];
 
-//functions
+////////// functions //////////
+
+// function to calculate reservation end time based on rounded time on click
 function buttonTime(){
     timeArray = [];
     if(minutes >= 45){
@@ -62,18 +63,36 @@ function buttonTime(){
     console.log(timeArray);
 }
 
-//function roomConfirmation(){
-//    $.ajax({
-//        url: skdjf,
-//        success: function(response){
-//            confirmationAlert();
-//        },
-//        error: function(request){
-//            errorAlert();
-//        }
-//    })
-//}
+// NOT FUNCTIONAL - reserves a room for 30 min. via google calendar
+function roomConfirmationThirty(){
+    $.ajax({
+        //this needs to book a room for 30 min. via google calendar
+        url: skdjf,
+        success: function(response){
+            confirmationThirtyAlert();
+        },
+        error: function(request){
+            errorAlert();
+        }
+    })
+}
 
+// NOT FUNCTIONAL - reserves a room for 60 min. via google calendar
+function roomConfirmationSixty(){
+    $.ajax({
+        //this needs to book a room for 60 min. via google calendar
+        url: skdjf,
+        success: function(response){
+            confirmationSixtyAlert();
+        },
+        error: function(request){
+            errorAlert();
+        }
+    })
+}
+
+
+// NOT FUNCTIONAL - populates calendar data from google calendar
 function ajaxCall(){
     $.ajax({
         url:knjnkm , //need from cat and ryan
@@ -85,8 +104,9 @@ function ajaxCall(){
         }
     });
 }
-function customConfirmationAlert(msg,duration)
-{
+
+// custom dialogue box for reservation confirmation alert message
+function customConfirmationAlert(msg,duration) {
     var styler = document.createElement("div");
     styler.setAttribute("style","border: solid 5px Red;width:auto;height:auto;top:50%;left:40%;background-color:#444;color:Silver;position:fixed");
     styler.innerHTML = "<h1>"+msg+"</h1>";
@@ -96,13 +116,19 @@ function customConfirmationAlert(msg,duration)
     },duration);
     document.body.appendChild(styler);
 }
-function confirmationAlert()
-{
-    customConfirmationAlert("You have booked" + roomArray[i].roomNumber + "through" + thirtyTime,"5000");
+
+// confirms a ~30 minute meeting has been booked
+function confirmationThirtyAlert() {
+    customConfirmationAlert("You have booked" + "through" + thirtyTime,"4000");
 }
 
-function customErrorAlert(msg,duration)
-{
+// confirms a ~60 minute meeting has been booked
+function confirmationSixtyAlert(){
+    customConfirmationAlert("You have booked" + "through" + sixtyTime, "4000");
+}
+
+// custom dialogue box for error alert
+function customErrorAlert(msg,duration) {
     var styler = document.createElement("div");
     styler.setAttribute("style","border: solid 5px Red;width:auto;height:auto;top:50%;left:40%;background-color:#444;color:Silver;position:fixed");
     styler.innerHTML = "<h1>"+msg+"</h1>";
@@ -112,48 +138,40 @@ function customErrorAlert(msg,duration)
     },duration);
     document.body.appendChild(styler);
 }
-function errorAlert()
-{
-    customErrorAlert("This is the error alert","5000");
+
+// error message if someone tries to book a room that has JUST been booked by someone else.
+function errorAlert() {
+    customErrorAlert("Sorry!" + "conference room number" + "was booked by someone else since you loaded the page.  Please choose a different conference room.","4000");
 }
 
-
+// loops through room array to append available conference rooms to the page
 function appendInfo(){
     buttonTime();
     for(var i = 0; i<roomArray.length; i++){
         //if the room is available for at least 1/2 hour then append it
         //if the room is available for less than one hour append it else "unavailable"
-        $('#rooms').append("<div id=''><p class='room text availYellow'>" + roomArray[i].roomNumber + "</p><button class='thirty btn btn-book'><span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>" + thirtyTime + "</button><button class='sixty btn btn-book'><span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>" + sixtyTime + "</button></div>");
+        $('#rooms').append("<div><p class='room text availYellow'>" + roomArray[i].roomNumber + "</p><button class='thirty btn btn-book'><span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>" + thirtyTime + "</button><button class='sixty btn btn-book'><span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>" + sixtyTime + "</button></div>");
     }
-
-    //$.each(response, function(index, response){
-    //    //$('#rooms').append("<div><button>" + thirtyTime + "</button><button>" + sixtyTime + "</button></div>");
-    //});
 }
 
 
+////////// Document Ready //////////
 $(document).ready(function(){
-    //confirmationAlert();
+
     buttonTime();
     appendInfo();
-//console.log(new Date().getTime());
-    //$('#rooms').append("<div><button>" + thirtyTime + "</button><button>" + sixtyTime + "</button></div>");
-    $('#rooms').on('click', '.thirty', function(){
-        console.log(confirmationAlert());
+
+    $('#rooms').on('click', ".thirty", function(){
+        confirmationThirtyAlert();
+        //roomConfirmationThirty();
+    });
+    $('#rooms').on('click', ".sixty", function(){
+        confirmationSixtyAlert();
+        //roomConfirmationSixty();
     });
 
+
 }); // end document ready
-
-
-
-
-
-
-
-
-
-
-
 
 
 
