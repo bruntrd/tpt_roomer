@@ -70,9 +70,11 @@ function roomConfirmationThirty(){
         url: skdjf,
         success: function(response){
             confirmationThirtyAlert($(this));
+            location.reload(); // need to test - should refresh page
         },
         error: function(request){
             errorAlert($(this));
+            location.reload(); // need to test - should refresh page
         }
     })
 }
@@ -84,9 +86,11 @@ function roomConfirmationSixty(){
         url: skdjf,
         success: function(response){
             confirmationSixtyAlert($(this));
+            location.reload(); // need to test - should refresh page
         },
         error: function(request){
             errorAlert($(this));
+            location.reload(); // need to test - should refresh page
         }
     })
 }
@@ -143,7 +147,7 @@ function confirmationSixtyAlert(room){
 
 // error message if someone tries to book a room that has JUST been booked by someone else.
 function errorAlert(room) {
-    alert("Sorry! " + room.parent().attr('id') + " was booked by someone else since you loaded the page.  Please choose a different conference room.","4000");
+    alert("Sorry! " + room.parent().attr('id') + " was booked by someone else since you loaded the page.  Please choose a different conference room.");
 }
 
 // loops through room array to append available conference rooms to the page
@@ -152,12 +156,11 @@ function appendInfo(){
     for(var i = 0; i<roomArray.length; i++){
         //if the room is available for at least 1/2 hour then append it
         //if the room is available for less than one hour append it else "unavailable"
-        var someP = $("</p>", {
-            class: "room text availYellow"
-        });
-        $('#rooms').append("<div id='" + roomArray[i].roomNumber + "'><p class='room text availYellow'>" + roomArray[i].roomNumber + "</p><button class='thirty btn btn-book'><span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>" + thirtyTime + "</button><button class='sixty btn btn-book'><span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>" + sixtyTime + "</button></div>");
+        $('#rooms').append("<div id='" + roomArray[i].roomNumber + "'><p class='room text availYellow'>" + roomArray[i].roomNumber + " Capacity: " + roomArray[i].capacity + "</p><button class='thirty btn btn-book'><span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>" + thirtyTime + "</button><button class='sixty btn btn-book'><span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>" + sixtyTime + "</button></div>");
+        //if room contains a computer then append the computer icon
     }
 }
+
 
 
 ////////// Document Ready //////////
