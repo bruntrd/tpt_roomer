@@ -3,32 +3,32 @@
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 360 360" style="enable-background:new 0 0 360 360;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill:none;stroke:#FFFFFF;stroke-width:10;stroke-linejoin:bevel;stroke-miterlimit:10;}
+	.st0{fill:none;stroke:#FFFFFF;stroke-width:13.0891;stroke-linejoin:bevel;stroke-miterlimit:10;}
 	.st1{fill:#FFFFFF;}
-	.st2{fill:none;stroke:#FFFFFF;stroke-width:7;stroke-miterlimit:10;}
-	.st3{fill:none;stroke:#FFFFFF;stroke-width:7;stroke-linejoin:bevel;stroke-miterlimit:10;}
-	.st4{fill:none;stroke:#FFFFFF;stroke-width:20;stroke-miterlimit:10;}
+	.st2{fill:none;stroke:#FFFFFF;stroke-width:9;stroke-miterlimit:10;}
+	.st3{fill:none;stroke:#FFFFFF;stroke-width:9.1624;stroke-miterlimit:10;}
+	.st4{fill:none;stroke:#FFFFFF;stroke-width:9.1624;stroke-linejoin:bevel;stroke-miterlimit:10;}
+	.st5{fill:none;stroke:#FFFFFF;stroke-width:20;stroke-miterlimit:10;}
 </style>
 <g id="Layer_2">
 	<circle cx="180" cy="180" r="180"/>
 </g>
-<g id="Layer_1">
-	<rect x="68.9" y="87.3" class="st0" width="155" height="127.6"/>
-	<rect x="243.8" y="87.3" class="st0" width="49.2" height="174.1"/>
-	<rect x="97.6" y="110.7" class="st1" width="14.7" height="26.1"/>
-	<rect x="97.6" y="158.3" class="st1" width="14.7" height="26.1"/>
-	<path class="st2" d="M124.3,154.3l22.2-24v10.8c10,0,20.8,6.6,20.8,13.2"/>
-	<path class="st2" d="M199.4,184.3c-20.5-22.9-18.6-52.9,0-73.7"/>
+<g id="Layer_4">
+	<rect x="78.9" y="63.8" class="st0" width="202.9" height="167"/>
+	<rect x="116.4" y="94.4" class="st1" width="19.2" height="34.1"/>
+	<rect x="116.4" y="156.7" class="st1" width="19.2" height="34.1"/>
+	<path class="st2" d="M151.5,151.5l29-31.4v14.2c14,0,27.2,8.6,27.2,17.2"/>
+	<path class="st3" d="M249.7,94.4c-26.8,30-24.3,69.2,0,96.4"/>
 	<g>
-		<polygon class="st3" points="224.3,263.3 69.3,263.3 89.6,228.8 203.2,228.8 		"/>
-		<line class="st2" x1="83" y1="239.5" x2="210" y2="239.5"/>
-		<line class="st2" x1="76" y1="251.5" x2="218" y2="251.5"/>
-		<line class="st2" x1="146.5" y1="230" x2="146.5" y2="265"/>
-		<line class="st2" x1="177.5" y1="230" x2="184.7" y2="263.3"/>
-		<line class="st2" x1="119.7" y1="230" x2="112.5" y2="263.3"/>
+		<polygon class="st4" points="282.3,294.3 79.4,294.3 105.9,249 254.7,249 		"/>
+		<line class="st2" x1="97" y1="262.5" x2="263" y2="262.5"/>
+		<line class="st2" x1="89" y1="278.5" x2="274" y2="278.5"/>
+		<line class="st2" x1="180.5" y1="251" x2="180.5" y2="297"/>
+		<line class="st3" x1="221" y1="250.6" x2="230.5" y2="294.3"/>
+		<line class="st3" x1="145.4" y1="250.6" x2="136" y2="294.3"/>
 	</g>
 </g>
 <g id="Layer_3">
-	<line class="st4" x1="307.3" y1="52.7" x2="52.7" y2="307.3"/>
+	<line class="st5" x1="307.3" y1="52.7" x2="52.7" y2="307.3"/>
 </g>
 </svg>

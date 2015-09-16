@@ -1,20 +1,17 @@
 @font-face {
-    font-family: 'Glyphicons Halflings';
-    src: url('../fonts/glyphicons-halflings-regular.eot');
-    src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
+    font-family: GothaMed;
+    src: url(../fonts/GothaMed.ttf);
 }
 
 body {
     background-color: #000;
+    font-family: GothaMed, serif;
 }
 
 #tempTimeAtTop {
     color: deepskyblue;
 }
 
-#logoimg {
-    width: 125%;
-}
 
 #appTitle {
     text-align: center;
@@ -22,18 +19,24 @@ body {
     font-size: 13.5vw;
 }
 
-#logoimg,#appTitle {
-    margin-top: 0;
+#logoimg {
     vertical-align: top;
+    width: 95%;
+
 }
 
 .room30,.room60 {
     border-radius: 5px;
     background-color: #41a8c6;
+    margin: 12px 0 0 0;
 }
 
-.room60 {
+.room {
+    margin: 6px auto;
+}
 
+.icons {
+    margin: 6px 0;
 }
 
 span {
@@ -68,15 +71,18 @@ span {
 
 .jumbotron {
     background-color: #000;
+    padding: 15px 15px 5px 15px;
+    margin-bottom: 2px;
 }
 
 .bookers {
-    /*float:right;*/
+    margin-top: 12px;
 }
 
 .computerStatusIcon {
     width: 3em;
     padding: 1px;
+    margin-right: 5px;
 }
 
 .theCapacityNum {
@@ -84,10 +90,12 @@ span {
     color: #41a8c6;
     background-image: url(../images/numberContainer.svg);
     background-repeat: no-repeat;
-    padding: 1px;
+    padding: 0 1px;
     height: 42px;
     background-position: right;
-    font-size: 36px;
+    font-size: 30px;
+    display: inline-block;
+    width: 84px;
 }
 
 .capacity {
@@ -96,7 +104,20 @@ span {
 
 .capacityBackground {
     height: 3em;
+}
 
+#confirmationPopUp {
+    border: solid 5px #556;
+    width: auto;
+    height: auto;
+    top: 50%;
+    background-color: #41a8c6;
+    color: #fff;
+    position: fixed;
+    text-align: center;
+    margin: 0 40px;
+    font-size: 25px;
+    padding: 5px;
 }
 
 @media (max-width: 600px) {
@@ -104,12 +125,14 @@ span {
         display: inline-block;
         vertical-align: middle;
         /*float: right;*/
+        margin-top: 2px;
     }
     .bookerA {
         display: block;
         float: none;
         width: 100%;
         max-width: 100%;
+        margin-bottom: 2px;
     }
     .bookerB {
         display: block;
@@ -117,6 +140,22 @@ span {
         width: 100%;
         max-width: 100%;
     }
-
+    .room {
+        font-size: 24px;
+    }
+    .icon {
+        height: 38px;
+        font-size: 26px;
+    }
+    .computerStatusIcon {
+        width: 38px;
+        margin-right: 1px;
+    }
+    .theCapacityNum {
+        width: 76px;
+    }
+    .digits1 {
+        padding-right: 13px;
+    }
 }
 
