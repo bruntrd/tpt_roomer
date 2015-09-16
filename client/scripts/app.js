@@ -161,7 +161,7 @@ function appendInfo(){
     for(var i = 0; i<roomArray.length; i++){
         //if the room is available for at least 1/2 hour then append it
         //if the room is available for less than one hour append it else "unavailable"
-        $('#rooms').append("<div class='room30' id='" + roomArray[i].roomNumber + "'><p class='room text availYellow'>" + roomArray[i].roomNumber +" <div class='icon theCapacityNum col-md-8 col-sm-8 col-xs-8'>" + roomArray[i].capacity + "</div>" + computerIcon(i) + "</p><button class='thirty btn btn-book'><span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>" + thirtyTime + "</button><button class='sixty btn btn-book'><span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>" + sixtyTime + "</button></div>");
+        $('#rooms').append("<div class='container room30' id='" + roomArray[i].roomNumber + "'><h2 class='room text availYellow'>" + roomArray[i].roomNumber +"</h2><div class='icon theCapacityNum col-md-8 col-sm-8 col-xs-8'>" + roomArray[i].capacity + "</div>" + computerIcon(i) + "<button class='thirty btn btn-book'><span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>" + thirtyTime + "</button><button class='sixty btn btn-book'><span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>" + sixtyTime + "</button></div>");
         //if room contains a computer then append the computer icon
     }
 }
@@ -220,22 +220,22 @@ var roomArray = [
     },
     {
         roomNumber: "CR " + 3212,
-        capacity: 10,
+        capacity: 36,
         computer: true
     },
     {
         roomNumber: "CR " + 3487,
-        capacity: 4,
+        capacity: 6,
         computer: false
     },
     {
         roomNumber: "CR " + 4112,
-        capacity: 4,
+        capacity: 6,
         computer: false
     },
     {
         roomNumber: "CR " + 4141,
-        capacity: 4,
+        capacity: 6,
         computer: false
     },
     {
@@ -245,36 +245,37 @@ var roomArray = [
     },
     {
         roomNumber:"CR " + 4211,
-        capacity: 4,
+        capacity: 8,
         computer: false
     },
     {
         roomNumber:"CR " + 4245,
-        capacity: 111,
-        computer: "uknown"
-    },
-    {
-        roomNumber:"CR " + 4261,
         capacity: 4,
         computer: false
     },
     {
-        roomNumber:"CR " + 4312,
-        capacity: 6,
+        roomNumber:"CR " + 4261,
+        capacity: 8,
         computer: false
-    },{
+    },
+    {
+        roomNumber:"CR " + 4312,
+        capacity: 8,
+        computer: false
+    },
+    {
         roomNumber:"CR " + 4416,
         capacity: 8,
         computer: false
     },
     {
         roomNumber:"CR " + 4487,
-        capacity: 6,
+        capacity: 4,
         computer: false
     },
     {
         roomNumber:"CR " + 4541,
-        capacity: 10,
+        capacity: 12,
         computer: true
     },
     {
@@ -285,7 +286,7 @@ var roomArray = [
     {
         roomNumber:"The Street Space",
         capacity: 20,
-        computer: "unknown"
+        computer: true
     },
     {
         roomNumber:"Training Room",
