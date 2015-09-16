@@ -130,6 +130,14 @@ function confirmationSixtyAlert(room){
     customConfirmationAlert("You have booked " + room.parent().attr('id') +  " through " + sixtyTime, "4000");
 }
 
+//function used within appendInfo function to display computer icon for boolean true
+function computerIcon(i){
+    if (roomArray[i].computer == true){
+        return '<img src="/assets/images/computer.png" class="icon computerStatusIcon col-md-4 col-sm-4 col-xs-4">'
+    } else
+    return "";
+}
+
 // custom dialogue box for error alert
 //function customErrorAlert(msg,duration) {
 //    var styler = document.createElement("div");
@@ -153,7 +161,7 @@ function appendInfo(){
     for(var i = 0; i<roomArray.length; i++){
         //if the room is available for at least 1/2 hour then append it
         //if the room is available for less than one hour append it else "unavailable"
-        $('#rooms').append("<div id='" + roomArray[i].roomNumber + "'><p class='room text availYellow'>" + roomArray[i].roomNumber + " Capacity: " + roomArray[i].capacity + "</p><button class='thirty btn btn-book'><span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>" + thirtyTime + "</button><button class='sixty btn btn-book'><span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>" + sixtyTime + "</button></div>");
+        $('#rooms').append("<div class='room30' id='" + roomArray[i].roomNumber + "'><p class='room text availYellow'>" + roomArray[i].roomNumber +" <div class='icon theCapacityNum col-md-8 col-sm-8 col-xs-8'>" + roomArray[i].capacity + "</div>" + computerIcon(i) + "</p><button class='thirty btn btn-book'><span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>" + thirtyTime + "</button><button class='sixty btn btn-book'><span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>" + sixtyTime + "</button></div>");
         //if room contains a computer then append the computer icon
     }
 }
@@ -276,7 +284,7 @@ var roomArray = [
     },
     {
         roomNumber:"The Street Space",
-        capacity: "unknown",
+        capacity: 20,
         computer: "unknown"
     },
     {
