@@ -114,8 +114,7 @@ function customConfirmationAlert(msg,duration) {
     var styler = document.createElement("div");
     styler.setAttribute("id","confirmationPopUp");
     styler.innerHTML = "<h1>"+msg+"</h1>";
-    setTimeout(function()
-    {
+    setTimeout(function() {
         styler.parentNode.removeChild(styler);
     },duration);
     document.body.appendChild(styler);
@@ -129,8 +128,6 @@ function confirmationThirtyAlert(room) {
 // confirms a ~60 minute meeting has been booked
 function confirmationSixtyAlert(room){
     customConfirmationAlert("You have booked " + room.parent().attr('id') +  " through " + sixtyTime, "4000");
-
-
 }
 
 // custom dialogue box for error alert
@@ -161,7 +158,22 @@ function appendInfo(){
     }
 }
 
+// refreshes page every quarter hour
+function autoRefresh(minutes, seconds) {
+    var now = new Date();
+    var then = new Date();
 
+    if(now.getMinutes() > minutes ||
+        (now.getMinutes() == minutes && now.getSeconds() > seconds) ||
+        now.getMinutes() == minutes && now.getSeconds() == seconds) {
+        then.setDate(now.getDate() + 1);
+    }
+    then.setMinutes(minutes);
+    then.setSeconds(seconds);
+
+    var timeout = (then.getTime() - now.getTime());
+    setTimeout(function() { window.location.reload(true); }, timeout);
+}
 
 ////////// Document Ready //////////
 $(document).ready(function(){
@@ -169,8 +181,17 @@ $(document).ready(function(){
     buttonTime();
     appendInfo();
 
+    // triggers to refresh page on each quarter hour
+    autoRefresh(00,0);
+    autoRefresh(15,0);
+    autoRefresh(30,0);
+    autoRefresh(45,0);
+
+
+
     $('#rooms').on('click', ".thirty", function(){
         confirmationThirtyAlert($(this));
+        console.log("THIS!");
         //roomConfirmationThirty();
     });
     $('#rooms').on('click', ".sixty", function(){
