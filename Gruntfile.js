@@ -7,7 +7,11 @@ module.exports = function(grunt){
             options: {
                 banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %>*/\n'
             },
-            build: {
+            testbuild: {
+                src: 'client/scripts/appTest.js',
+                dest: 'server/public/assets/scripts/appTest.min.js'
+            },
+            build : {
                 src: 'client/scripts/app.js',
                 dest: 'server/public/assets/scripts/app.min.js'
             }
@@ -52,6 +56,7 @@ module.exports = function(grunt){
                     "styles/style.css"
                 ],
                 "dest": "server/public/assets"
+
             }
         }
     });
