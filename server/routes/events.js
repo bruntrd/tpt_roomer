@@ -16,6 +16,38 @@ var app = express(),
 oAuthClient = new google.auth.OAuth2(googleConfig.clientID, googleConfig.clientSecret, googleConfig.redirectURL),
     authed = false;
 
+router.post('/', function(req,res,next){
+    //var today = moment().format('YYYY-MM-DD') + 'T';
+    console.log(req.body);
+    console.log("post hit");
+    var event = {
+        summary: req.body.summary,
+        location: req.body.location,
+        start: {
+            'dateTime': '2015-09-21T16:00:00-05:00',
+            'timeZone': 'America/Chicago'
+        },
+        end: {
+            'dateTime': '2015-09-21T17:00:00-05:00',
+            'timeZone': 'America/Chicago'
+        }
+    };
+
+
+    calendar.events.insert({
+        calendarId: googleConfig.calendarId,
+        resource: event,
+        auth: oAuthClient
+    }, function(err, event){
+        if (err) {
+            console.log('There was an error contacing google calendar: ' + err);
+            return;
+        }
+        res.send("yes");
+        console.log('event created', event.htmlLink);
+    });
+});
+
 router.get('/', function(req, res) {
     console.log(req.params[0]);
 
@@ -42,7 +74,7 @@ router.get('/', function(req, res) {
 
 router.get("/*", function(req,res){
     var file = req.params[0] || '/assets/views/index.html';
-    console.log(file);
+    //console.log(file);
     res.sendFile(path.join(__dirname, '../public', file));
 
 });
