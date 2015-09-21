@@ -1,68 +1,68 @@
 ////////// variables //////////
 var currentTime = new Date();
+var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
 var minutes = currentTime.getMinutes();
 var thirtyTime;
 var sixtyTime;
-var timeArray = [];
+var reserveSixtyTime;
+var reserveThirtyTime;
 var eventData;
+
 
 ////////// functions //////////
 
 // function to calculate reservation end time based on rounded time on click
-function buttonTime(){
-    timeArray = [];
-    if(minutes >= 45){
+function buttonTime() {
+    if (minutes >= 45) {
         thirtyTime = currentTime.getHours() + 1 + ":30";
         sixtyTime = currentTime.getHours() + 2 + ":00";
-        if(parseInt(thirtyTime) > 12){
+        milThirtyTime = currentTime.getHours() + 1 + ":30";
+        milSixtyTime = currentTime.getHours() + 2 + ":00";
+        if (parseInt(thirtyTime) > 12) {
             thirtyTime = parseInt(thirtyTime) - 12 + ":30";
         }
-        if(parseInt(sixtyTime) > 12){
+        if (parseInt(sixtyTime) > 12) {
             sixtyTime = parseInt(sixtyTime) - 12 + ":00";
         }
-        console.log("Thirty Time: " + thirtyTime);
-        console.log("Sixty Time: " + sixtyTime);
     }
-    else if(minutes >= 30 && minutes < 45){
+    else if (minutes >= 30 && minutes < 45) {
         thirtyTime = currentTime.getHours() + 1 + ":00";
         sixtyTime = currentTime.getHours() + 1 + ":30";
-        if(parseInt(thirtyTime) > 12){
+        milThirtyTime = currentTime.getHours() + 1 + ":00";
+        milSixtyTime = currentTime.getHours() + 1 + ":30";
+        if (parseInt(thirtyTime) > 12) {
             thirtyTime = parseInt(thirtyTime) - 12 + ":00";
         }
-        if(parseInt(sixtyTime) > 12){
+        if (parseInt(sixtyTime) > 12) {
             sixtyTime = parseInt(sixtyTime) - 12 + ":30";
         }
-        console.log("Thirty Time: " + thirtyTime);
-        console.log("Sixty Time: " + sixtyTime);
     }
-    else if(minutes >= 15 && minutes < 30){
+    else if (minutes >= 15 && minutes < 30) {
         thirtyTime = currentTime.getHours() + 1 + ":00";
         sixtyTime = currentTime.getHours() + 1 + ":30";
-        if(parseInt(thirtyTime) > 12){
+        milThirtyTime = currentTime.getHours() + 1 + ":00";
+        milSixtyTime = currentTime.getHours() + 1 + ":30";
+        if (parseInt(thirtyTime) > 12) {
             thirtyTime = parseInt(thirtyTime) - 12 + ":00";
         }
-        if(parseInt(sixtyTime) > 12){
+        if (parseInt(sixtyTime) > 12) {
             sixtyTime = parseInt(sixtyTime) - 12 + ":30";
         }
-        console.log("Thirty Time: " + thirtyTime);
-        console.log("Sixty Time: " + sixtyTime);
     }
-    else if(minutes <15 &&  minutes >= 0){
+    else if (minutes < 15 && minutes >= 0) {
         thirtyTime = currentTime.getHours() + ":30";
         sixtyTime = currentTime.getHours() + 1 + ":00";
-        if(parseInt(thirtyTime) > 12){
+        milThirtyTime = currentTime.getHours() + ":30";
+        milSixtyTime = currentTime.getHours() + 1 + ":00";
+        if (parseInt(thirtyTime) > 12) {
             thirtyTime = parseInt(thirtyTime) - 12 + ":30";
         }
-        if(parseInt(sixtyTime) > 12){
+        if (parseInt(sixtyTime) > 12) {
             sixtyTime = parseInt(sixtyTime) - 12 + ":00";
         }
-        console.log("Thirty Time: " + thirtyTime);
-        console.log("Sixty Time: " + sixtyTime);
     }
-    timeArray.push(thirtyTime);
-    timeArray.push(sixtyTime);
-    console.log(timeArray);
 }
+
 
 // NOT FUNCTIONAL - reserves a room for 30 min. via google calendar
 function roomConfirmationThirty(){
@@ -103,8 +103,16 @@ function ajaxCall(){
         url: '/events',
         success: function(response){
             eventData = response.items;
-            console.log(new Date(eventData[0].start.dateTime).getTime());
-            console.log(eventData);
+            //console.log(new Date(eventData[0].start.dateTime).getTime());
+            //console.log(eventData);
+
+            //console.log(response.items[0].start.getTime());
+            console.log(roomArray[0].available30);
+            console.log(roomArray[0].available60);
+            roomLoop();
+            appendInfo();
+            console.log(roomArray[1].available30);
+            console.log(roomArray[1].available60);
             return eventData;
 
         },
@@ -115,11 +123,18 @@ function ajaxCall(){
 }
 
 function data30Loop(i){
+    reserveThirtyTime = currentTime.getDate() + " " + monthNames[currentTime.getMonth()] + " " + currentTime.getFullYear() + " " + thirtyTime + ":00";
     for(var j = 0; j < eventData.length; j++){
-        if(thirtyTime(sec) <= new Date(eventData[j].start.getTime()) && new Date(eventData[j].end.getTime()) <= currentTime.getTime()){
-            console.log("ok!");
+        if(new Date(eventData[j].end.dateTime).getTime() > currentTime.getTime() && currentTime.getTime() > new Date(eventData[j].start.dateTime).getTime()){
+            return roomArray[i].available30 = false;
         }
-        else{
+        else if(currentTime.getTime() < new Date(eventData[j].start.dateTime).getTime() && new Date(eventData[j].start.dateTime).getTime() < Date.parse(reserveThirtyTime)){
+            return roomArray[i].available30 = false;
+        }
+        else if(currentTime.getTime() <= new Date(eventData[j].start.dateTime).getTime() && Date.parse(reserveThirtyTime) >= new Date(eventData[j].end.dateTime).getTime()){
+            return roomArray[i].available30 = false;
+        }
+        else if(currentTime.getTime() >= new Date(eventData[j].start.dateTime).getTime() && Date.parse(reserveThirtyTime) <= new Date(eventData[j].end.dateTime).getTime()){
             return roomArray[i].available30 = false;
         }
     }
@@ -127,19 +142,20 @@ function data30Loop(i){
 
 // checks for 60 min meeting and sets data flag to false if necessary
 function data60Loop(i){
+    reserveSixtyTime = currentTime.getDate() + " " + monthNames[currentTime.getMonth()] + " " + currentTime.getFullYear() + " " + sixtyTime + ":00";
     for(var j = 0; j < eventData.length; j++){
-        if(sixtyTime(sec) <= new Date(eventData[j].start.getTime()) && new Date(eventData[j].end.getTime()) <= currentTime.getTime()){
-            console.log("ok!");
+        if(Date.parse(reserveSixtyTime) >= new Date(eventData[j].start.dateTime).getTime() || new Date(eventData[j].end.dateTime).getTime() >= currentTime.getTime()){
+            return roomArray[i].available60 = false;
         }
         else{
-            return roomArray[i].available60 = false;
+            return roomArray[i].available60 = true;
         }
     }
 }
 
  //loops through rooms to change data flags
 function roomLoop(){
-    for(var i = 0; i < roomArray.length; 1++){
+    for(var i = 0; i < roomArray.length; i++){
         data30Loop(i);
         data60Loop(i);
     }
@@ -197,18 +213,17 @@ function appendInfo(){
     for(var i = 0; i<roomArray.length; i++){
         //if the room is available for at least 1/2 hour then append it
         //if the room is available for less than one hour append it else "unavailable"
-        $('#rooms').append("<div class='container room30' id='" + roomArray[i].roomNumber + "'><h2 class='room text availYellow'>" + roomArray[i].roomNumber +"</h2><div class='icon theCapacityNum col-md-8 col-sm-8 col-xs-8'>" + roomArray[i].capacity + "</div>" + computerIcon(i) + "<button class='thirty btn btn-book'><span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>" + thirtyTime + "</button><button class='sixty btn btn-book'><span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>" + sixtyTime + "</button></div>");
-        //if room contains a computer then append the computer icon
-    }
+        if(roomArray[i].available30 == true) {
+            $('#rooms').append("<div class='container room30' id='" + roomArray[i].roomNumber + "'><h2 class='room text availYellow'>" + roomArray[i].roomNumber + "</h2><div class='icon theCapacityNum col-md-8 col-sm-8 col-xs-8'>" + roomArray[i].capacity + "</div>" + computerIcon(i) + "<button class='thirty btn btn-book'><span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>" + thirtyTime + "</button><button class='sixty btn btn-book'><span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>" + sixtyTime + "</button></div>");
+            //if room contains a computer then append the computer icon
+        }else {
+            console.log(roomArray[i].roomNumber + " " + roomArray[i].available30);
+            console.log(roomArray[i].roomNumber + 'not appended');
+        }
+        }
 }
 
-// resets flags to true on page refresh (call function)
-//function resetFlags(){
-//    for(var i = 0; i < roomArray.length; i++);
-//    roomArray[i].available30 = true;
-//    roomArray[i].available60 = true;
-//}
-//
+
 //// determines which 60 button to append
 //function assign60Button(i){
 //    if(roomArray[i].available60 == true){
@@ -238,11 +253,29 @@ function autoRefresh(minutes, seconds) {
 
 ////////// Document Ready //////////
 $(document).ready(function(){
-    ajaxCall();
-    console.log(Date.parse("2015-09-18T10:00:00-05:00"));
     buttonTime();
-    appendInfo();
-    console.log("current time: " + currentTime.getTime());
+    ajaxCall();
+
+    //console.log(currentTime.getDate() + " " + monthNames[currentTime.getMonth()] + " " + currentTime.getFullYear() + " " + thirtyTime + ":00"
+    //);
+    //var jack = currentTime.getDate() + " " + monthNames[currentTime.getMonth()] + " " + currentTime.getFullYear() + " " + thirtyTime + ":00";
+    //console.log(Date.parse(reserveThirtyTime));
+    //console.log(Date.parse("Mon, 25 Dec 1995"));
+    //console.log(Date.parse("Mon, 25 Dec 1995 13:30:00"));
+    //console.log(Date.parse("25 Dec 1995 13:30:00"));
+    //console.log(currentTime.getDate());
+    //console.log(currentTime.getMonth());
+    //console.log(currentTime.getFullYear());
+    //console.log(Date.parse(jack));
+
+    //shows as miliseconds
+    //console.log(Date.parse("2015-09-18T10:00:00-05:00"));
+    //shows as NaN
+    //console.log("milTime:" + Date.parse(milSixtyTime));
+
+    //appendInfo();
+    //console.log("current time: " + currentTime.getTime());
+    //console.log(currentTime.getYear());
 
     // triggers to refresh page on each quarter hour
     autoRefresh(00,0);
