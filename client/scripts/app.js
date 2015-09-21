@@ -104,15 +104,11 @@ function ajaxCall(){
         success: function(response){
             eventData = response.items;
             //console.log(new Date(eventData[0].start.dateTime).getTime());
-            //console.log(eventData);
+            console.log(eventData);
 
             //console.log(response.items[0].start.getTime());
-            console.log(roomArray[0].available30);
-            console.log(roomArray[0].available60);
             roomLoop();
             appendInfo();
-            console.log(roomArray[1].available30);
-            console.log(roomArray[1].available60);
             return eventData;
 
         },
@@ -124,18 +120,36 @@ function ajaxCall(){
 
 function data30Loop(i){
     reserveThirtyTime = currentTime.getDate() + " " + monthNames[currentTime.getMonth()] + " " + currentTime.getFullYear() + " " + thirtyTime + ":00";
-    for(var j = 0; j < eventData.length; j++){
-        if(new Date(eventData[j].end.dateTime).getTime() > currentTime.getTime() && currentTime.getTime() > new Date(eventData[j].start.dateTime).getTime()){
-            return roomArray[i].available30 = false;
-        }
-        else if(currentTime.getTime() < new Date(eventData[j].start.dateTime).getTime() && new Date(eventData[j].start.dateTime).getTime() < Date.parse(reserveThirtyTime)){
-            return roomArray[i].available30 = false;
-        }
-        else if(currentTime.getTime() <= new Date(eventData[j].start.dateTime).getTime() && Date.parse(reserveThirtyTime) >= new Date(eventData[j].end.dateTime).getTime()){
-            return roomArray[i].available30 = false;
-        }
-        else if(currentTime.getTime() >= new Date(eventData[j].start.dateTime).getTime() && Date.parse(reserveThirtyTime) <= new Date(eventData[j].end.dateTime).getTime()){
-            return roomArray[i].available30 = false;
+    for(var j = 0; j < eventData.length; j++) {
+        //if(currentTime.getTime() <= new Date(eventData[j].start.dateTime).getTime() && Date.parse(reserveThirtyTime) <= new Date(eventData[j].start.dateTime).getTime()){
+        //    console.log(Date.parse(currentTime));
+        //    console.log("current time: " + currentTime.getTime());
+        //    console.log("start time: " + new Date(eventData[j].start.dateTime).getTime());
+        //    console.log("thirty time: " + Date.parse(reserveThirtyTime));
+        //    console.log("end time: " + new Date(eventData[j].end.dateTime).getTime());
+        //    return roomArray[i].available30 = true;
+        //}
+        //else if(new Date(eventData[j].start.dateTime).getTime() <= currentTime.getDate() && new Date(eventData[j].end.dateTime).getTime() <= currentTime.getDate()){
+        //    return roomArray[i].available30 = true;
+        //}
+        //console.log(eventData[j].location);
+        if (eventData[j].location == roomArray[i].roomNumber) {
+            console.log("3212 console log" + roomArray[1].available30);
+            if (new Date(eventData[j].end.dateTime).getTime() > currentTime.getTime() && currentTime.getTime() > new Date(eventData[j].start.dateTime).getTime()) {
+                return roomArray[i].available30 = false;
+            }
+            else if (currentTime.getTime() < new Date(eventData[j].start.dateTime).getTime() && new Date(eventData[j].start.dateTime).getTime() < Date.parse(reserveThirtyTime)) {
+                return roomArray[i].available30 = false;
+            }
+            else if (currentTime.getTime() <= new Date(eventData[j].start.dateTime).getTime() && Date.parse(reserveThirtyTime) >= new Date(eventData[j].end.dateTime).getTime()) {
+                return roomArray[i].available30 = false;
+            }
+            else if (currentTime.getTime() >= new Date(eventData[j].start.dateTime).getTime() && Date.parse(reserveThirtyTime) <= new Date(eventData[j].end.dateTime).getTime()) {
+                return roomArray[i].available30 = false;
+            }
+            else{
+                return roomArray[i].available30 = true;
+            }
         }
     }
 }
@@ -361,7 +375,9 @@ var roomArray = [
     {
         roomNumber:"CR " + 4261,
         capacity: 8,
-        computer: false
+        computer: false,
+        available30: true,
+        available60: true
     },
     {
         roomNumber:"CR " + 4312,
