@@ -26,7 +26,7 @@ router.get('/', function(req, res) {
 
         var url = oAuthClient.generateAuthUrl({
             access_type: 'offline',
-            scope: 'https://www.googleapis.com/auth/calendar.readonly'
+            scope: 'https://www.googleapis.com/auth/calendar'
         });
         res.redirect(url);
     } else {
@@ -45,14 +45,7 @@ router.get('/', function(req, res) {
                 //console.log(err);
             } else {
                 //console.log('Successfully fetched events');
-                //console.log(events);
-                console.log(events);
-                res.redirect('/index');
-
-
-
-
-
+               res.redirect('/index');
             }
         });
     }
@@ -79,25 +72,17 @@ router.get('/auth', function(req, res) {
                 oAuthClient.setCredentials(tokens);
                 authed = true;
                 res.redirect('/');
-
-
             }
         });
     }
 });
 
 router.get('/*', function(req,res,next){
-    console.log(file);
+    //console.log(req.params[0]);
     var file= req.params[0] || "assets/views/index.html";
+    console.log(file);
     res.sendFile(path.join(__dirname, "../public", file));
 
 });
-
-
-
-
-
-
-
 
 module.exports= router;

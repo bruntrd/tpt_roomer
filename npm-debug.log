@@ -17,7 +17,7 @@
 10 verbose stack     at maybeClose (child_process.js:1015:16)
 10 verbose stack     at Process.ChildProcess._handle.onexit (child_process.js:1087:5)
 11 verbose pkgid roomer_tpt@1.0.0
-12 verbose cwd /Users/jamesddaniels/Desktop/Prime Academy/tpt_roomer
+12 verbose cwd /Users/blunt/WebstormProjects/tpt_roomer
 13 error Darwin 14.5.0
 14 error argv "node" "/usr/local/bin/npm" "start"
 15 error node v0.12.7
