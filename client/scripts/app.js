@@ -1,3 +1,4 @@
+// No git this doc Delete it all. It locks the pop up for styling purposes.
 ////////// variables //////////
 var currentTime = new Date();
 var minutes = currentTime.getMinutes();
@@ -109,14 +110,16 @@ function ajaxCall(){
     });
 }
 
+////////// The Block Edited by Jim. Keep as is////////
 // custom dialogue box for reservation confirmation alert message
 function customConfirmationAlert(msg,duration) {
     var styler = document.createElement("div");
     styler.setAttribute("id","confirmationPopUp");
-    styler.innerHTML = "<h1>"+msg+"</h1>";
-    setTimeout(function() {
+    styler.setAttribute("class","popUp");
+    styler.innerHTML = "<div>Confirmation<div id='popUpYesBox'>" + msg + ".</div></div>";
+    /*setTimeout(function() {
         styler.parentNode.removeChild(styler);
-    },duration);
+    },duration);*/
     document.body.appendChild(styler);
 }
 
@@ -150,9 +153,18 @@ function computerIcon(i){
 //    document.body.appendChild(styler);
 //}
 
+////////// The Block Edited by Jim. Keep as is////////
 // error message if someone tries to book a room that has JUST been booked by someone else.
 function errorAlert(room) {
-    alert("Sorry! " + room.parent().attr('id') + " was booked by someone else since you loaded the page.  Please choose a different conference room.");
+    console.log("error fired");
+    var styler = document.createElement("div");
+    styler.setAttribute("id","denialPopUp");
+    styler.setAttribute("class","popUp");
+    styler.innerHTML = "<div>Sorry! <div id='popUpNoBox'>" + room.parent().attr('id') + " was booked by someone else since you loaded the page.  Please choose a different conference room.</div></div>";
+    /*setTimeout(function() {
+     styler.parentNode.removeChild(styler);
+     },duration);*/
+    document.body.appendChild(styler);
 }
 
 // loops through room array to append available conference rooms to the page
@@ -205,6 +217,11 @@ $(document).ready(function(){
     $('#rooms').on('click', ".sixty", function(){
         confirmationSixtyAlert($(this));
         //roomConfirmationSixty();
+    });
+////// This is temporary by Jim for testing purposes ///////
+    $('#rooms').on('click', ".computerStatusIcon", function(){
+        errorAlert($(this));
+
     });
 
 
