@@ -28,7 +28,9 @@ body {
 .room30,.room60 {
     border-radius: 5px;
     background-color: #41a8c6;
-    margin: 12px 0 0 0;
+    margin: 5px 0 0 0;
+    display: inline-block;
+    width: 100%;
 }
 
 .room {
@@ -37,6 +39,8 @@ body {
 
 .icons {
     margin: 6px 0;
+    display: flex;
+    float: left;
 }
 
 span {
@@ -44,29 +48,26 @@ span {
 }
 
 .availYellow {
-    color: orange;
+    color: #000;
 }
 
 .availRed {
-    color: red;
+    color: #fcca00;
 }
 
 .availGreen {
     color: darkgreen;
 }
 
-.col-sm-1 {
-    display: none;
-}
-
 .btn-disabled {
-    background-color: #b6d7a8;
-    color: #262626;
+    background-color: #507b67;
+    color: #fff;
+    padding: 5px;
 }
 
 .btn-book {
-    background-color: #38761d;
-    color: #ffffff;
+    background-color: #05c78a;
+    color: #fff;
 }
 
 .jumbotron {
@@ -75,9 +76,9 @@ span {
     margin-bottom: 2px;
 }
 
-.bookers {
-    margin-top: 12px;
-}
+/*.bookers {
+    display: inline-block;
+}*/
 
 .computerStatusIcon {
     width: 3em;
@@ -121,18 +122,32 @@ span {
 }
 
 @media (max-width: 600px) {
+    .room30,.room60 {
+        margin: 2px 0 0 0;
+        width: 100%;
+        padding: 5px 10px;
+    }
     .bookers {
         display: inline-block;
         vertical-align: middle;
-        /*float: right;*/
-        margin-top: 2px;
+        float: right;
+        margin: 4px 0 0;
+    }
+    .roomInfo {
+        display: inline-block;
+        float: left;
+    }
+    .bookerA,.bookerB {
+        height: 38px;
+        font-size: 20px;
+        width: 100px;
     }
     .bookerA {
         display: block;
         float: none;
         width: 100%;
         max-width: 100%;
-        margin-bottom: 2px;
+        margin-bottom: 4px;
     }
     .bookerB {
         display: block;
@@ -140,8 +155,11 @@ span {
         width: 100%;
         max-width: 100%;
     }
+    .btn-disabled {
+        font-size: 14px;
+    }
     .room {
-        font-size: 24px;
+        font-size: 26px;
     }
     .icon {
         height: 38px;
@@ -157,5 +175,5 @@ span {
     .digits1 {
         padding-right: 13px;
     }
-}
 
+}
