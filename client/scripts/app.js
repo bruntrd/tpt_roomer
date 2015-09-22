@@ -104,15 +104,11 @@ function ajaxCall(){
         success: function(response){
             eventData = response.items;
             //console.log(new Date(eventData[0].start.dateTime).getTime());
-            //console.log(eventData);
+            console.log(eventData);
 
             //console.log(response.items[0].start.getTime());
-            console.log(roomArray[0].available30);
-            console.log(roomArray[0].available60);
             roomLoop();
             appendInfo();
-            console.log(roomArray[1].available30);
-            console.log(roomArray[1].available60);
             return eventData;
 
         },
@@ -124,31 +120,47 @@ function ajaxCall(){
 
 function data30Loop(i){
     reserveThirtyTime = currentTime.getDate() + " " + monthNames[currentTime.getMonth()] + " " + currentTime.getFullYear() + " " + thirtyTime + ":00";
-    for(var j = 0; j < eventData.length; j++){
-        if(new Date(eventData[j].end.dateTime).getTime() > currentTime.getTime() && currentTime.getTime() > new Date(eventData[j].start.dateTime).getTime()){
-            return roomArray[i].available30 = false;
-        }
-        else if(currentTime.getTime() < new Date(eventData[j].start.dateTime).getTime() && new Date(eventData[j].start.dateTime).getTime() < Date.parse(reserveThirtyTime)){
-            return roomArray[i].available30 = false;
-        }
-        else if(currentTime.getTime() <= new Date(eventData[j].start.dateTime).getTime() && Date.parse(reserveThirtyTime) >= new Date(eventData[j].end.dateTime).getTime()){
-            return roomArray[i].available30 = false;
-        }
-        else if(currentTime.getTime() >= new Date(eventData[j].start.dateTime).getTime() && Date.parse(reserveThirtyTime) <= new Date(eventData[j].end.dateTime).getTime()){
-            return roomArray[i].available30 = false;
+    for(var j = 0; j < eventData.length; j++) {
+        if (eventData[j].location == roomArray[i].roomNumber) {
+            if (new Date(eventData[j].end.dateTime).getTime() > currentTime.getTime() && currentTime.getTime() > new Date(eventData[j].start.dateTime).getTime()) {
+                return roomArray[i].available30 = false;
+            }
+            else if (currentTime.getTime() < new Date(eventData[j].start.dateTime).getTime() && new Date(eventData[j].start.dateTime).getTime() < Date.parse(reserveThirtyTime)) {
+                return roomArray[i].available30 = false;
+            }
+            else if (currentTime.getTime() <= new Date(eventData[j].start.dateTime).getTime() && Date.parse(reserveThirtyTime) >= new Date(eventData[j].end.dateTime).getTime()) {
+                return roomArray[i].available30 = false;
+            }
+            else if (currentTime.getTime() >= new Date(eventData[j].start.dateTime).getTime() && Date.parse(reserveThirtyTime) <= new Date(eventData[j].end.dateTime).getTime()) {
+                return roomArray[i].available30 = false;
+            }
+            else{
+                return roomArray[i].available30 = true;
+            }
         }
     }
 }
 
 // checks for 60 min meeting and sets data flag to false if necessary
-function data60Loop(i){
+function data60Loop(i) {
     reserveSixtyTime = currentTime.getDate() + " " + monthNames[currentTime.getMonth()] + " " + currentTime.getFullYear() + " " + sixtyTime + ":00";
-    for(var j = 0; j < eventData.length; j++){
-        if(Date.parse(reserveSixtyTime) >= new Date(eventData[j].start.dateTime).getTime() || new Date(eventData[j].end.dateTime).getTime() >= currentTime.getTime()){
-            return roomArray[i].available60 = false;
-        }
-        else{
-            return roomArray[i].available60 = true;
+    for (var j = 0; j < eventData.length; j++) {
+        if (eventData[j].location == roomArray[i].roomNumber) {
+            if (new Date(eventData[j].end.dateTime).getTime() > currentTime.getTime() && currentTime.getTime() > new Date(eventData[j].start.dateTime).getTime()) {
+                return roomArray[i].available60 = false;
+            }
+            else if (currentTime.getTime() < new Date(eventData[j].start.dateTime).getTime() && new Date(eventData[j].start.dateTime).getTime() < Date.parse(reserveSixtyTime)) {
+                return roomArray[i].available60 = false;
+            }
+            else if (currentTime.getTime() <= new Date(eventData[j].start.dateTime).getTime() && Date.parse(reserveSixtyTime) >= new Date(eventData[j].end.dateTime).getTime()) {
+                return roomArray[i].available60 = false;
+            }
+            else if (currentTime.getTime() >= new Date(eventData[j].start.dateTime).getTime() && Date.parse(reserveSixtyTime) <= new Date(eventData[j].end.dateTime).getTime()) {
+                return roomArray[i].available60 = false;
+            }
+            else {
+                return roomArray[i].available60 = true;
+            }
         }
     }
 }
@@ -225,7 +237,7 @@ function appendInfo(){
         //if the room is available for at least 1/2 hour then append it
         //if the room is available for less than one hour append it else "unavailable"
         if(roomArray[i].available30 == true) {
-            $('#rooms').append("<div class='container room30' id='" + roomArray[i].roomNumber + "'><h2 class='room text availYellow'>" + roomArray[i].roomNumber + "</h2><div class='icon theCapacityNum col-md-8 col-sm-8 col-xs-8'>" + roomArray[i].capacity + "</div>" + computerIcon(i) + "<button class='thirty btn btn-book'><span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>" + thirtyTime + "</button><button class='sixty btn btn-book'><span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>" + sixtyTime + "</button></div>");
+            $('#rooms').append("<div class='container room30' id='" + roomArray[i].roomNumber + "'><h2 class='room text availYellow'>" + roomArray[i].roomNumber + "</h2><div class='icon theCapacityNum col-md-8 col-sm-8 col-xs-8'>" + roomArray[i].capacity + "</div>" + computerIcon(i) + "<button class='thirty btn btn-book'><span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>" + thirtyTime + "</button>" + assign60Button(i) + "</div>");
             //if room contains a computer then append the computer icon
         }else {
             console.log(roomArray[i].roomNumber + " " + roomArray[i].available30);
@@ -236,14 +248,16 @@ function appendInfo(){
 
 
 //// determines which 60 button to append
-//function assign60Button(i){
-//    if(roomArray[i].available60 == true){
-//        // 60 min button
-//    }
-//    else{
-//        // unavailable button
-//    }
-//}
+function assign60Button(i){
+    if(roomArray[i].available60 == true){
+        // 60 min button
+        return "<button class='sixty btn btn-book'><span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>" + sixtyTime + "</button>"
+    }
+    else{
+        // unavailable button
+        return "<button class='btn btn-disabled bookerB'>Unavailable</button>"
+    }
+}
 
 // refreshes page every quarter hour
 function autoRefresh(minutes, seconds) {
@@ -378,7 +392,9 @@ var roomArray = [
     {
         roomNumber:"CR " + 4261,
         capacity: 8,
-        computer: false
+        computer: false,
+        available30: true,
+        available60: true
     },
     {
         roomNumber:"CR " + 4312,
