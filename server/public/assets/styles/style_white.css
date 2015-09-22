@@ -1,0 +1,321 @@
+@font-face {
+    font-family: GothaMed;
+    src: url(../fonts/GothaMed.ttf);
+}
+
+body {
+    background-color: #000;
+    font-family: GothaMed, serif;
+}
+
+#appTitle {
+    text-align: center;
+    color: #fff;
+    font-size: 13.5vw;
+}
+
+#logoimg {
+    vertical-align: top;
+    width: 90%;
+    margin: 3px 0 0;
+}
+
+.room30,.room60 {
+    border-radius: 5px;
+    background-color: #fff;
+    margin: 5px 0 0 0;
+    display: inline-block;
+    width: 100%;
+}
+
+.room {
+    margin: 6px auto;
+    color: #000;
+}
+
+.icons {
+    margin: 6px 0;
+    display: flex;
+    float: left;
+}
+
+span {
+    vertical-align: text-top;
+}
+
+/*probably not using these three*/
+.availYellow {
+    color: #000;
+}
+
+.availRed {
+    color: #fcca00;
+}
+
+.availGreen {
+    color: darkgreen;
+}
+
+.btn {
+    border: 1px solid #fff;
+}
+.glyphicon-arrow-right {
+    padding-right: 7px;
+}
+
+.btn-disabled {
+    background-color: #507b67;
+    color: #fff;
+    padding: 5px;
+}
+
+.btn-book {
+    background-color: #05c78a;
+    color: #fff;
+}
+
+.jumbotron {
+    background-color: #000;
+    padding: 15px 15px 5px 15px;
+    margin-bottom: 2px;
+}
+
+/*.bookers {
+    display: inline-block;
+}*/
+
+.capacity {
+    position: relative;
+}
+
+.capacityBackground {
+    height: 3em;
+}
+
+#confirmationPopUp, #denialPopUp {
+    border: solid 5px #556;
+    background-color: #000;
+    color: #fff;
+}
+
+#logoHeader {
+    text-align: center;
+    margin: 20px 0 12px;
+}
+
+#confirmDoubleBook {
+    float: right;
+    margin: 4px;
+    width: 50%;
+    background-color: #e03643;
+}
+
+.popUp {
+    border-radius: 4px;
+    position: fixed;
+    text-align: center;
+    font-size: 25px;
+    box-shadow: 8px 8px 5px rgba(0, 0, 0, 0.7);
+    top: 40%;
+    left: 50%;
+    width: 410px;
+    margin-left: -205px;
+    margin-top: -70px;
+}
+
+#popUpYesBox,#popUpNoBox {
+    margin: 3px;
+    background-color: #41a8c6;
+    color: #fff;
+    padding: 2px 10px;
+    border-radius: 3px;
+}
+
+#popUpNoBox {
+    background-color: #e03643;
+    font-size: 18px;
+    margin: 2px 5px;
+}
+
+
+/*below here is the lg media style default*/
+body {
+    max-width: 775px;
+    margin: 0 auto;
+}
+.noComputerStatusIcon {
+    display: none;
+}
+.computerStatusIcon {
+    padding: 1px;
+    margin-right: 5px;
+}
+
+.theCapacityNum {
+    text-align: right;
+    color: #fff;
+    background-image: url(../images/numberContainer-BlueBg.svg);
+    background-repeat: no-repeat;
+    padding: 0 1px;
+    width: 90px;
+    background-position: right;
+    font-size: 35px;
+    display: inline-block;
+    line-height: 1.3;
+}
+.digits1 {
+    padding: 0 13px;
+}
+.bookers {
+    display: inline-flex;
+    float: right;
+    margin: 7px 4px 0;
+}
+.roomInfo {
+    display: inline-flex;
+}
+.bookerA,.bookerB {
+    height: 45px;
+    font-size: 22px;
+    width: 110px;
+    padding: 3px;
+}
+.bookerA {
+    display: block;
+    float: none;
+    margin-bottom: 4px;
+    margin-right: 3px;
+}
+.bookerB {
+    display: block;
+    float: none;
+}
+.btn-disabled {
+    font-size: 14px;
+}
+.room {
+    margin: 7px;
+    font-size: 40px;
+}
+.icons {
+    float: right;
+}
+.icon {
+    height: 45px;
+}
+
+@media (max-width: 700px) {
+    body {
+        max-width: 635px;
+        margin: 0 auto;
+    }
+    #logoHeader {
+        text-align: center;
+        margin: 16px 0 4px;
+    }
+    .bookers {
+        margin: 7px 4px 0;
+    }
+    .icon {
+        height: 38px;
+    }
+    .bookerA,.bookerB {
+        height: 38px;
+        font-size: 20px;
+        width: 93px;
+        padding: 2px;
+    }
+    .bookerA {
+        margin-bottom: 4px;
+        margin-right: 3px;
+    }
+
+    .theCapacityNum {
+        padding: 0 1px;
+        height: 38px;
+        font-size: 28px;
+        width: 76px;
+        line-height: 1.3;
+    }
+    .btn-disabled {
+        font-size: 14px;
+    }
+    .room {
+        margin: 7px;
+        font-size: 30px;
+    }
+    .digits1 {
+        padding-right: 13px;
+    }
+    .popUp {
+        top: 35%;
+    }
+}
+@media (max-width: 560px) {
+    .longRoom {
+        font-size: 20px;
+        margin-top: 15px;
+    }
+    #logoHeader {
+        text-align: center;
+        margin: 14px 0 2px;
+    }
+}
+
+@media (max-width: 490px) {
+    body {
+        max-width: 420px;
+        margin: 0 auto;
+    }
+    #logoHeader {
+        text-align: center;
+        margin: 10px 0 6px;
+    }
+    .longRoom {
+        font-size: 30px;
+    }
+    .noComputerStatusIcon {
+        width: 38px;
+        height: 38px;
+        margin-right: 1px;
+        display: inline-block;
+    }
+    .room30,.room60 {
+        margin: 2px 0 0 0;
+        width: 100%;
+        padding: 5px 10px;
+    }
+    .bookers {
+        display: inline-block;
+        vertical-align: middle;
+        float: right;
+        margin: 4px 0 0;
+    }
+    .roomInfo {
+        display: inline-block;
+        float: left;
+    }
+    .room {
+        font-size: 26px;
+        margin: 5px
+    }
+    .icons {
+        float: none;
+    }
+    .computerStatusIcon {
+        width: 38px;
+        margin-right: 1px;
+    }
+    .theCapacityNum {
+        width: 76px;
+    }
+    .popUp {
+        top: 30%;
+        left: 50%;
+        width: 224px;
+        margin-left: -112px;
+        margin-top: -55px;
+    }
+}
+
+
