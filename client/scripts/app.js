@@ -204,17 +204,6 @@ function computerIcon(i){
     return "";
 }
 
-// custom dialogue box for error alert
-//function customErrorAlert(msg,duration) {
-//    var styler = document.createElement("div");
-//    styler.setAttribute("style","border: solid 5px Red;width:auto;height:auto;top:50%;left:40%;background-color:#444;color:Silver;position:fixed");
-//    styler.innerHTML = "<h1>"+msg+"</h1>";
-//    setTimeout(function()
-//    {
-//        styler.parentNode.removeChild(styler);
-//    },duration);
-//    document.body.appendChild(styler);
-//}
 
 ////////// The Block Edited by Jim. Keep as is////////
 // error message if someone tries to book a room that has JUST been booked by someone else.
@@ -235,7 +224,7 @@ function appendInfo(){
     buttonTime();
     for(var i = 0; i<roomArray.length; i++){
         //if the room is available for at least 1/2 hour then append it
-        //if the room is available for less than one hour append it else "unavailable"
+        //if the room fis available for less than one hour append it else "unavailable"
         if(roomArray[i].available30 == true) {
             $('#rooms').append("<div class='container room30' id='" + roomArray[i].roomNumber + "'><h2 class='room text availYellow'>" + roomArray[i].roomNumber + "</h2><div class='icon theCapacityNum col-md-8 col-sm-8 col-xs-8'>" + roomArray[i].capacity + "</div>" + computerIcon(i) + "<button class='thirty btn btn-book'><span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>" + thirtyTime + "</button>" + assign60Button(i) + "</div>");
             //if room contains a computer then append the computer icon
@@ -281,27 +270,6 @@ $(document).ready(function(){
     buttonTime();
     ajaxCall();
 
-    //console.log(currentTime.getDate() + " " + monthNames[currentTime.getMonth()] + " " + currentTime.getFullYear() + " " + thirtyTime + ":00"
-    //);
-    //var jack = currentTime.getDate() + " " + monthNames[currentTime.getMonth()] + " " + currentTime.getFullYear() + " " + thirtyTime + ":00";
-    //console.log(Date.parse(reserveThirtyTime));
-    //console.log(Date.parse("Mon, 25 Dec 1995"));
-    //console.log(Date.parse("Mon, 25 Dec 1995 13:30:00"));
-    //console.log(Date.parse("25 Dec 1995 13:30:00"));
-    //console.log(currentTime.getDate());
-    //console.log(currentTime.getMonth());
-    //console.log(currentTime.getFullYear());
-    //console.log(Date.parse(jack));
-
-    //shows as miliseconds
-    //console.log(Date.parse("2015-09-18T10:00:00-05:00"));
-    //shows as NaN
-    //console.log("milTime:" + Date.parse(milSixtyTime));
-
-    //appendInfo();
-    //console.log("current time: " + currentTime.getTime());
-    //console.log(currentTime.getYear());
-
     // triggers to refresh page on each quarter hour
     autoRefresh(00,0);
     autoRefresh(15,0);
@@ -311,9 +279,7 @@ $(document).ready(function(){
 
 
     $('#rooms').on('click', ".thirty", function(){
-        ajaxCall();
         //confirmationThirtyAlert($(this));
-        //console.log("THIS!");
         //roomConfirmationThirty();
     });
     $('#rooms').on('click', ".sixty", function(){
@@ -329,7 +295,7 @@ $(document).ready(function(){
 
 }); // end document ready
 
-
+//array of info for each meeting room
 
 var roomArray = [
     {
