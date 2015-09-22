@@ -7,6 +7,9 @@ var sixtyTime;
 var reserveSixtyTime;
 var reserveThirtyTime;
 var eventData;
+var postThirtyEvent;
+var postSixtyEvent;
+
 
 
 ////////// functions //////////
@@ -63,7 +66,26 @@ function buttonTime() {
     }
 }
 
-
+function bookRoomThirty(){
+    $.ajax({
+        type: "POST",
+        url:"/events",
+        data: postThirtyEvent,
+        success: function(data){
+            console.log(data);
+        }
+    })
+}
+function bookRoomSixty(){
+    $.ajax({
+        type: "POST",
+        url:"/events",
+        data: postSixtyEvent,
+        success: function(data){
+            console.log(data);
+        }
+    })
+}
 // NOT FUNCTIONAL - reserves a room for 30 min. via google calendar
 function roomConfirmationThirty(){
     $.ajax({
@@ -111,6 +133,8 @@ function ajaxCall(){
             console.log(roomArray[0].available60);
             roomLoop();
             appendInfo();
+            console.log("this is reserver 60 time: "+ reserveSixtyTime);
+            console.log("this is reserve 30 time: "+ reserveThirtyTime);
             console.log(roomArray[1].available30);
             console.log(roomArray[1].available60);
             return eventData;
@@ -139,6 +163,7 @@ function data30Loop(i){
         }
     }
 }
+
 
 // checks for 60 min meeting and sets data flag to false if necessary
 function data60Loop(i){
@@ -289,6 +314,7 @@ $(document).ready(function(){
     //console.log(currentTime.getYear());
 
     // triggers to refresh page on each quarter hour
+
     autoRefresh(00,0);
     autoRefresh(15,0);
     autoRefresh(30,0);
@@ -297,12 +323,28 @@ $(document).ready(function(){
 
 
     $('#rooms').on('click', ".thirty", function(){
+        var postLocation = $this.parent().attr("data-id");
+        postThirtyEvent = {
+            summary: 'Squatting',
+            location: postLocation,
+            start: currentTime.getFullYear() + '-'+currentTime.getMonth()+ '-'+currentTime.getDate()+'T'+currentTime.getHours()+'-05:00:',
+            end: currentTime.getFullYear() + '-'+currentTime.getMonth()+ '-'+currentTime.getDate()+'T'+thirtyTime+'-05:00:'
+        };
+        console.log(postThirtyEvent);
         ajaxCall();
         //confirmationThirtyAlert($(this));
         //console.log("THIS!");
         //roomConfirmationThirty();
     });
     $('#rooms').on('click', ".sixty", function(){
+        var postLocation = $this.parent().attr("data-id");
+        postSixtyEvent = {
+            summary: 'Squatting',
+            location: postLocation,
+            start: currentTime.getFullYear() + '-'+currentTime.getMonth()+ '-'+currentTime.getDate()+'T'+currentTime.getHours()+'-05:00:',
+            end: currentTime.getFullYear() + '-'+currentTime.getMonth()+ '-'+currentTime.getDate()+'T'+sixtyTime+'-05:00:'
+        };
+        console.log(postSixtyEvent)
         confirmationSixtyAlert($(this));
         //roomConfirmationSixty();
     });
