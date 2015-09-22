@@ -8,11 +8,6 @@ body {
     font-family: GothaMed, serif;
 }
 
-#tempTimeAtTop {
-    color: deepskyblue;
-}
-
-
 #appTitle {
     text-align: center;
     color: #fff;
@@ -21,8 +16,8 @@ body {
 
 #logoimg {
     vertical-align: top;
-    width: 100%;
-
+    width: 90%;
+    margin: 3px 0 0;
 }
 
 .room30,.room60 {
@@ -61,6 +56,13 @@ span {
     color: darkgreen;
 }
 
+.btn {
+    border: 1px solid #fff;
+}
+.glyphicon-arrow-right {
+    padding-right: 7px;
+}
+
 .btn-disabled {
     background-color: #507b67;
     color: #fff;
@@ -90,10 +92,22 @@ span {
     height: 3em;
 }
 
-#confirmationPopUp {
+#confirmationPopUp, #denialPopUp {
     border: solid 5px #556;
     background-color: #000;
     color: #fff;
+}
+
+#logoHeader {
+    text-align: center;
+    margin: 20px 0 12px;
+}
+
+#confirmDoubleBook {
+    float: right;
+    margin: 4px;
+    width: 50%;
+    background-color: #e03643;
 }
 
 .popUp {
@@ -119,6 +133,8 @@ span {
 
 #popUpNoBox {
     background-color: #e03643;
+    font-size: 18px;
+    margin: 2px 5px;
 }
 
 
@@ -193,6 +209,10 @@ body {
         max-width: 635px;
         margin: 0 auto;
     }
+    #logoHeader {
+        text-align: center;
+        margin: 16px 0 4px;
+    }
     .bookers {
         margin: 7px 4px 0;
     }
@@ -236,12 +256,20 @@ body {
         font-size: 20px;
         margin-top: 15px;
     }
+    #logoHeader {
+        text-align: center;
+        margin: 14px 0 2px;
+    }
 }
 
 @media (max-width: 490px) {
     body {
         max-width: 420px;
         margin: 0 auto;
+    }
+    #logoHeader {
+        text-align: center;
+        margin: 10px 0 6px;
     }
     .longRoom {
         font-size: 30px;

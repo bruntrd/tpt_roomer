@@ -211,7 +211,7 @@ function errorAlert(room) {
     var styler = document.createElement("div");
     styler.setAttribute("id","denialPopUp");
     styler.setAttribute("class","popUp");
-    styler.innerHTML = "<div>Sorry! <div id='popUpNoBox'>" + room.parent().attr('id') + " was booked by someone else since you loaded the page.  Please choose a different conference room.</div></div>";
+    styler.innerHTML = "<div>Sorry! <div id='popUpNoBox'>" + room.parent().attr('id') + " was booked by someone else since you loaded the page.  Please choose a different conference room.</div><button id='confirmDoubleBook'>OK</button></div>";
     /*setTimeout(function() {
      styler.parentNode.removeChild(styler);
      },duration);*/
@@ -306,6 +306,7 @@ $(document).ready(function(){
         confirmationSixtyAlert($(this));
         //roomConfirmationSixty();
     });
+
 ////// This is temporary by Jim for testing purposes ///////
     $('#rooms').on('click', ".computerStatusIcon", function(){
         errorAlert($(this));
