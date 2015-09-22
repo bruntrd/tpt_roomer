@@ -14,46 +14,47 @@
 </head>
 <body>
 <!--<div class="container">-->
-    <div class="jumbotron row">
-        <img class="col-md-12" id="logoimg" src="/assets/secret_images/logoAndTitle-caps.png" onerror="this.src='/assets/images/logoAndTitle-old-caps.png'" alt="TPT Squatter"></div>
+<div class="jumbotron row">
+    <img class="col-md-12" id="logoimg" src="/assets/secret_images/logoAndTitle-caps.png" onerror="this.src='/assets/images/logoAndTitle-old-caps.png'" alt="TPT Squatter"></div>
 
 
-    <div id="rooms">
-        <div class="room30">
-            <div class="roomInfo">
-                <h2 class="room text availRed">CR 4112</h2>
-                <div class="icons">
-                    <div>
-                        <img src="/assets/images/computer.svg" class="icon computerStatusIcon" onerror="/assets/images/computer.png">
-                    </div>
-                    <div class="icon theCapacityNum">30</div>
+<div id="rooms">
+    <div data-id="CR 4000" class="room30">
+        <div class="roomInfo">
+            <h2 class="room text">CR 4112</h2>
+            <div class="icons">
+                <div class="icon noComputerStatusIcon">
                 </div>
-            </div>
-            <div class="bookers">
-                <button class="btn btn-book bookerA"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>1:30</button>
-                <!--how to disable: http://stackoverflow.com/questions/17327668/best-way-to-disable-button-in-twitters-bootstrap -->
-                <button class="btn btn-disabled bookerB">Unavailable</button>
+                <div class="icon theCapacityNum digits2">30</div>
             </div>
         </div>
-
-        <div class="room60">
-            <div class="roomInfo">
-                <h2 class="room text availYellow">Training Room</h2>
-                <div class="icons">
-                    <div class="icon computerStatusIcon">
-
-                    </div>
-                    <div class="icon digits1 theCapacityNum">4</div>
-                </div>
-            </div>
-
-            <div class="bookers">
-                <button class="btn btn-book bookerA"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>1:30</button>
-                <button class="btn btn-book bookerA"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>2:00</button>
-            </div>
+        <div class="bookers">
+            <button class="btn btn-book bookerA testRed"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>12:00</button>
+            <!--how to disable: http://stackoverflow.com/questions/17327668/best-way-to-disable-button-in-twitters-bootstrap -->
+            <button class="btn btn-disabled bookerB">Unavailable</button>
         </div>
     </div>
-<!--</div>-->
+
+    <div data-id="Training Room" class="room60">
+        <div class="roomInfo">
+            <h2 class="room longRoom text">Training Room</h2>
+            <div class="icons">
+
+                <div>
+                    <img src="/assets/images/computer.svg" class="icon computerStatusIcon" onerror="/assets/images/computer.png">
+                </div>
+
+
+                <div class="icon digits1 theCapacityNum">4</div>
+            </div>
+        </div>
+
+        <div class="bookers">
+            <button class="btn btn-book bookerA"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>12:00</button>
+            <button class="btn btn-book bookerB"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>12:30</button>
+        </div>
+    </div>
+</div>
 </body>
 </html>
 
