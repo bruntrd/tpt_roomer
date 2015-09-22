@@ -1,6 +1,7 @@
 ////////// variables //////////
 var currentTime = new Date();
 var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+var monthNum = currentTime.getMonth()+1;
 var minutes = currentTime.getMinutes();
 var thirtyTime;
 var sixtyTime;
@@ -9,6 +10,8 @@ var reserveThirtyTime;
 var eventData;
 var postThirtyEvent;
 var postSixtyEvent;
+var milThirtyTime;
+var milSixtyTime;
 
 
 
@@ -73,6 +76,7 @@ function bookRoomThirty(){
         data: postThirtyEvent,
         success: function(data){
             console.log(data);
+            ajaxCall();
         }
     })
 }
@@ -83,6 +87,7 @@ function bookRoomSixty(){
         data: postSixtyEvent,
         success: function(data){
             console.log(data);
+            ajaxCall();
         }
     })
 }
@@ -336,17 +341,19 @@ $(document).ready(function(){
     autoRefresh(15,0);
     autoRefresh(30,0);
     autoRefresh(45,0);
+    console.log(monthNum);
 
 
 
     $('#rooms').on('click', ".thirty", function(){
-        var postLocation = $this.parent().attr("data-id");
+        var postLocation = $(this).parent().attr("id");
         postThirtyEvent = {
             summary: 'Squatting',
             location: postLocation,
-            start: currentTime.getFullYear() + '-'+currentTime.getMonth()+ '-'+currentTime.getDate()+'T'+currentTime.getHours()+'-05:00:',
-            end: currentTime.getFullYear() + '-'+currentTime.getMonth()+ '-'+currentTime.getDate()+'T'+thirtyTime+'-05:00:'
+            start: currentTime.getFullYear() + '-0'+monthNum+ '-'+currentTime.getDate()+'T'+currentTime.getHours()+':'+currentTime.getMinutes()+':00'+'-05:00',
+            end: currentTime.getFullYear() + '-0'+monthNum+'-'+currentTime.getDate()+'T'+milThirtyTime+':00'+'-05:00'
         };
+        bookRoomThirty();
         console.log(postThirtyEvent);
         ajaxCall();
         //confirmationThirtyAlert($(this));
@@ -354,14 +361,16 @@ $(document).ready(function(){
         //roomConfirmationThirty();
     });
     $('#rooms').on('click', ".sixty", function(){
-        var postLocation = $this.parent().attr("data-id");
+        var postLocation = $(this).parent().attr("id");
+        console.log("hey this is postlocation: " + postLocation);
         postSixtyEvent = {
             summary: 'Squatting',
             location: postLocation,
-            start: currentTime.getFullYear() + '-'+currentTime.getMonth()+ '-'+currentTime.getDate()+'T'+currentTime.getHours()+'-05:00:',
-            end: currentTime.getFullYear() + '-'+currentTime.getMonth()+ '-'+currentTime.getDate()+'T'+sixtyTime+'-05:00:'
+            start: currentTime.getFullYear() + '-0'+monthNum+ '-'+currentTime.getDate()+'T'+currentTime.getHours()+':'+currentTime.getMinutes()+':00'+'-05:00',
+            end: currentTime.getFullYear() + '-0'+monthNum+ '-'+currentTime.getDate()+'T'+milSixtyTime+':00'+'-05:00'
         };
-        console.log(postSixtyEvent)
+        bookRoomSixty();
+        console.log(postSixtyEvent);
         confirmationSixtyAlert($(this));
         //roomConfirmationSixty();
     });
