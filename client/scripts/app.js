@@ -1,12 +1,18 @@
 ////////// variables //////////
 var currentTime = new Date();
 var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+var monthNum = currentTime.getMonth()+1;
 var minutes = currentTime.getMinutes();
 var thirtyTime;
 var sixtyTime;
 var reserveSixtyTime;
 var reserveThirtyTime;
 var eventData;
+var postThirtyEvent;
+var postSixtyEvent;
+var milThirtyTime;
+var milSixtyTime;
+
 
 
 ////////// functions //////////
@@ -63,7 +69,28 @@ function buttonTime() {
     }
 }
 
-
+function bookRoomThirty(){
+    $.ajax({
+        type: "POST",
+        url:"/events",
+        data: postThirtyEvent,
+        success: function(data){
+            console.log(data);
+            ajaxCall();
+        }
+    })
+}
+function bookRoomSixty(){
+    $.ajax({
+        type: "POST",
+        url:"/events",
+        data: postSixtyEvent,
+        success: function(data){
+            console.log(data);
+            ajaxCall();
+        }
+    })
+}
 // NOT FUNCTIONAL - reserves a room for 30 min. via google calendar
 function roomConfirmationThirty(){
     $.ajax({
@@ -109,6 +136,11 @@ function ajaxCall(){
             //console.log(response.items[0].start.getTime());
             roomLoop();
             appendInfo();
+            console.log("this is reserver 60 time: "+ reserveSixtyTime);
+            console.log("this is reserve 30 time: "+ reserveThirtyTime);
+            console.log(roomArray[1].available30);
+            console.log(roomArray[1].available60);
+
             return eventData;
 
         },
@@ -140,6 +172,7 @@ function data30Loop(i){
         }
     }
 }
+
 
 // checks for 60 min meeting and sets data flag to false if necessary
 function data60Loop(i) {
@@ -212,7 +245,7 @@ function errorAlert(room) {
     var styler = document.createElement("div");
     styler.setAttribute("id","denialPopUp");
     styler.setAttribute("class","popUp");
-    styler.innerHTML = "<div>Sorry! <div id='popUpNoBox'>" + room.parent().attr('id') + " was booked by someone else since you loaded the page.  Please choose a different conference room.</div></div>";
+    styler.innerHTML = "<div>Sorry! <div id='popUpNoBox'>" + room.parent().attr('id') + " was booked by someone else since you loaded the page.  Please choose a different conference room.</div><button id='confirmDoubleBook'>OK</button></div>";
     /*setTimeout(function() {
      styler.parentNode.removeChild(styler);
      },duration);*/
@@ -271,21 +304,44 @@ $(document).ready(function(){
     ajaxCall();
 
     // triggers to refresh page on each quarter hour
+
     autoRefresh(00,0);
     autoRefresh(15,0);
     autoRefresh(30,0);
     autoRefresh(45,0);
+    console.log(monthNum);
 
 
 
     $('#rooms').on('click', ".thirty", function(){
+        var postLocation = $(this).parent().attr("id");
+        postThirtyEvent = {
+            summary: 'Squatting',
+            location: postLocation,
+            start: currentTime.getFullYear() + '-0'+monthNum+ '-'+currentTime.getDate()+'T'+currentTime.getHours()+':'+currentTime.getMinutes()+':00'+'-05:00',
+            end: currentTime.getFullYear() + '-0'+monthNum+'-'+currentTime.getDate()+'T'+milThirtyTime+':00'+'-05:00'
+        };
+        bookRoomThirty();
+        console.log(postThirtyEvent);
+        ajaxCall();
         //confirmationThirtyAlert($(this));
         //roomConfirmationThirty();
     });
     $('#rooms').on('click', ".sixty", function(){
+        var postLocation = $(this).parent().attr("id");
+        console.log("hey this is postlocation: " + postLocation);
+        postSixtyEvent = {
+            summary: 'Squatting',
+            location: postLocation,
+            start: currentTime.getFullYear() + '-0'+monthNum+ '-'+currentTime.getDate()+'T'+currentTime.getHours()+':'+currentTime.getMinutes()+':00'+'-05:00',
+            end: currentTime.getFullYear() + '-0'+monthNum+ '-'+currentTime.getDate()+'T'+milSixtyTime+':00'+'-05:00'
+        };
+        bookRoomSixty();
+        console.log(postSixtyEvent);
         confirmationSixtyAlert($(this));
         //roomConfirmationSixty();
     });
+
 ////// This is temporary by Jim for testing purposes ///////
     $('#rooms').on('click', ".computerStatusIcon", function(){
         errorAlert($(this));

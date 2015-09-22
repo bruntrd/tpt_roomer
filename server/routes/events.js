@@ -24,16 +24,16 @@ router.post('/', function(req,res,next){
         summary: req.body.summary,
         location: req.body.location,
         start: {
-            'dateTime': '2015-09-21T16:00:00-05:00',
+            'dateTime': req.body.start,
             'timeZone': 'America/Chicago'
         },
         end: {
-            'dateTime': '2015-09-21T17:00:00-05:00',
+            'dateTime': req.body.end,
             'timeZone': 'America/Chicago'
         }
     };
 
-
+    console.log(event);
     calendar.events.insert({
         calendarId: googleConfig.calendarId,
         resource: event,
