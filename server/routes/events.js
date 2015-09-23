@@ -1,6 +1,6 @@
 var googleConfig = {
-    clientID: '270120115745-e2n1h3h8aufb1brf05hbin6r54orduop.apps.googleusercontent.com',
-    clientSecret: 'uwWUU7VuuVSxZwZ5GT132DHv',
+    clientID: '721997656029-ltfbn93eoag67dtfd2vmpok1pgpqltnd.apps.googleusercontent.com',
+    clientSecret: 'nEZ7d93CL5gIeIIwPfeyOao6',
     calendarId: 'tpt.roomer@gmail.com',
     redirectURL: 'https://salty-shore-2719.herokuapp.com/auth'
 };
