@@ -1,12 +1,18 @@
 ////////// variables //////////
 var currentTime = new Date();
 var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+var monthNum = currentTime.getMonth()+1;
 var minutes = currentTime.getMinutes();
 var thirtyTime;
 var sixtyTime;
 var reserveSixtyTime;
 var reserveThirtyTime;
 var eventData;
+var postThirtyEvent;
+var postSixtyEvent;
+var milThirtyTime;
+var milSixtyTime;
+
 
 
 ////////// functions //////////
@@ -63,38 +69,69 @@ function buttonTime() {
     }
 }
 
+function bookRoomThirty(btn){
 
-// NOT FUNCTIONAL - reserves a room for 30 min. via google calendar
-function roomConfirmationThirty(){
     $.ajax({
-        //this needs to book a room for 30 min. via google calendar
-        url: s,
-        success: function(response){
-            confirmationThirtyAlert($(this));
-            location.reload(); // need to test - should refresh page
+        type: "POST",
+        url:"/events",
+        data: postThirtyEvent,
+        success: function(data){
+            confirmationThirtyAlert(btn);
+            setTimeout(function() { window.location.reload(true); }, 3001);
         },
         error: function(request){
             errorAlert($(this));
-            location.reload(); // need to test - should refresh page
+            location.reload();
+        }
+    })
+}
+function bookRoomSixty(btn){
+    $.ajax({
+        type: "POST",
+        url:"/events",
+        data: postSixtyEvent,
+        success: function(data){
+            confirmationSixtyAlert(btn);
+            setTimeout(function() { window.location.reload(true); }, 3001);
+        },
+        error: function(request){
+            errorAlert($(this));
+            location.reload();
         }
     })
 }
 
-// NOT FUNCTIONAL - reserves a room for 60 min. via google calendar
-function roomConfirmationSixty(){
-    $.ajax({
-        //this needs to book a room for 60 min. via google calendar
-        url: skdjf,
-        success: function(response){
-            confirmationSixtyAlert($(this));
-            location.reload(); // need to test - should refresh page
-        },
-        error: function(request){
-            errorAlert($(this));
-            location.reload(); // need to test - should refresh page
-        }
-    })
-}
+//// NOT FUNCTIONAL - reserves a room for 30 min. via google calendar
+//function roomConfirmationThirty(){
+//    $.ajax({
+//        //this needs to book a room for 30 min. via google calendar
+//        url: s,
+//        success: function(response){
+//            confirmationThirtyAlert($(this));
+//            location.reload(); // need to test - should refresh page
+//        },
+//        error: function(request){
+//            errorAlert($(this));
+//            location.reload(); // need to test - should refresh page
+//        }
+//    })
+//}
+//
+//// NOT FUNCTIONAL - reserves a room for 60 min. via google calendar
+//function roomConfirmationSixty(){
+//    $.ajax({
+//        //this needs to book a room for 60 min. via google calendar
+//        url: skdjf,
+//        success: function(response){
+//            confirmationSixtyAlert($(this));
+//            location.reload(); // need to test - should refresh page
+//        },
+//        error: function(request){
+//            errorAlert($(this));
+//            location.reload(); // need to test - should refresh page
+//        }
+//    })
+//}
 
 // NOT FUNCTIONAL - populates calendar data from google calendar
 function ajaxCall(){
@@ -103,12 +140,19 @@ function ajaxCall(){
         url: '/events',
         success: function(response){
             eventData = response.items;
+            console.log("HERE" + response.items);
+            console.log("EVENT DATA: "+ eventData);
             //console.log(new Date(eventData[0].start.dateTime).getTime());
             console.log(eventData);
 
             //console.log(response.items[0].start.getTime());
             roomLoop();
             appendInfo();
+            //console.log("this is reserver 60 time: "+ reserveSixtyTime);
+            //console.log("this is reserve 30 time: "+ reserveThirtyTime);
+            //console.log(roomArray[1].available30);
+            //console.log(roomArray[1].available60);
+
             return eventData;
 
         },
@@ -119,7 +163,7 @@ function ajaxCall(){
 }
 
 function data30Loop(i){
-    reserveThirtyTime = currentTime.getDate() + " " + monthNames[currentTime.getMonth()] + " " + currentTime.getFullYear() + " " + thirtyTime + ":00";
+    reserveThirtyTime = currentTime.getDate() + " " + monthNames[currentTime.getMonth()] + " " + currentTime.getFullYear() + " " + milThirtyTime + ":00";
     for(var j = 0; j < eventData.length; j++) {
         if (eventData[j].location == roomArray[i].roomNumber) {
             if (new Date(eventData[j].end.dateTime).getTime() > currentTime.getTime() && currentTime.getTime() > new Date(eventData[j].start.dateTime).getTime()) {
@@ -141,9 +185,11 @@ function data30Loop(i){
     }
 }
 
+
 // checks for 60 min meeting and sets data flag to false if necessary
 function data60Loop(i) {
-    reserveSixtyTime = currentTime.getDate() + " " + monthNames[currentTime.getMonth()] + " " + currentTime.getFullYear() + " " + sixtyTime + ":00";
+    reserveSixtyTime = currentTime.getDate() + " " + monthNames[currentTime.getMonth()] + " " + currentTime.getFullYear() + " " + milSixtyTime + ":00";
+    console.log("Look Here!" + reserveSixtyTime);
     for (var j = 0; j < eventData.length; j++) {
         if (eventData[j].location == roomArray[i].roomNumber) {
             if (new Date(eventData[j].end.dateTime).getTime() > currentTime.getTime() && currentTime.getTime() > new Date(eventData[j].start.dateTime).getTime()) {
@@ -173,71 +219,76 @@ function roomLoop(){
     }
 }
 
-////////// The Block Edited by Jim. Keep as is////////
+////////// This Block Edited by Jim. Keep as is////////
 // custom dialogue box for reservation confirmation alert message
-function customConfirmationAlert(msg,duration) {
+function customConfirmationAlert(msg) {
+    console.log("customConf coming up");
     var styler = document.createElement("div");
     styler.setAttribute("id","confirmationPopUp");
     styler.setAttribute("class","popUp");
     styler.innerHTML = "<div>Confirmation<div id='popUpYesBox'>" + msg + ".</div></div>";
-    /*setTimeout(function() {
+    setTimeout(function() {
         styler.parentNode.removeChild(styler);
-    },duration);*/
+    },3000);
     document.body.appendChild(styler);
 }
 
 // confirms a ~30 minute meeting has been booked
 function confirmationThirtyAlert(room) {
-    customConfirmationAlert("You have booked " + room.parent().attr('id') + " through " + thirtyTime,"4000");
+    console.log("room");
+    console.log(room);
+    customConfirmationAlert("You have booked " + room.attr('id') + " through " + thirtyTime);
 }
 
 // confirms a ~60 minute meeting has been booked
 function confirmationSixtyAlert(room){
-    customConfirmationAlert("You have booked " + room.parent().attr('id') +  " through " + sixtyTime, "4000");
+    customConfirmationAlert("You have booked " + room.attr('id') +  " through " + sixtyTime);
 }
 
 //function used within appendInfo function to display computer icon for boolean true
 function computerIcon(i){
     if (roomArray[i].computer == true){
-        return '<img src="/assets/images/computer.png" class="icon computerStatusIcon col-md-4 col-sm-4 col-xs-4">'
+        return '<div>' + '<img src="/assets/images/computer.svg" class="icon computerStatusIcon" onerror="/assets/images/computer.png">' + '</div>';
     } else
-    return "";
+    return '<div class="icon noComputerStatusIcon"></div>';
 }
 
-// custom dialogue box for error alert
-//function customErrorAlert(msg,duration) {
-//    var styler = document.createElement("div");
-//    styler.setAttribute("style","border: solid 5px Red;width:auto;height:auto;top:50%;left:40%;background-color:#444;color:Silver;position:fixed");
-//    styler.innerHTML = "<h1>"+msg+"</h1>";
-//    setTimeout(function()
-//    {
-//        styler.parentNode.removeChild(styler);
-//    },duration);
-//    document.body.appendChild(styler);
-//}
 
 ////////// The Block Edited by Jim. Keep as is////////
 // error message if someone tries to book a room that has JUST been booked by someone else.
 function errorAlert(room) {
-    console.log("error fired");
     var styler = document.createElement("div");
     styler.setAttribute("id","denialPopUp");
     styler.setAttribute("class","popUp");
     styler.innerHTML = "<div>Sorry! <div id='popUpNoBox'>" + room.parent().attr('id') + " was booked by someone else since you loaded the page.  Please choose a different conference room.</div><button id='confirmDoubleBook'>OK</button></div>";
-    /*setTimeout(function() {
-     styler.parentNode.removeChild(styler);
-     },duration);*/
     document.body.appendChild(styler);
+    $('#theBody').on('click', "#confirmDoubleBook", function() {
+        styler.parentNode.removeChild(styler);
+        location.reload();
+    });
 }
 
 // loops through room array to append available conference rooms to the page
 function appendInfo(){
+
     buttonTime();
+    console.log("room array: ");
+    console.log(roomArray);
+
     for(var i = 0; i<roomArray.length; i++){
+        //checks capacity and sets a class accordingly.
+        var digits = "";
+        if(roomArray[i].capacity > 9){
+            digits = " digits2";
+        } else
+            digits = " digits1";
+        //checks for the number of characters in a room title and adds a class if it's more than 11
+        var isLongRoom = "";
+        if(roomArray[i].roomNumber.length > 8){isLongRoom = " longRoom"}
         //if the room is available for at least 1/2 hour then append it
-        //if the room is available for less than one hour append it else "unavailable"
+        //if the room fis available for less than one hour append it else "unavailable"
         if(roomArray[i].available30 == true) {
-            $('#rooms').append("<div class='container room30' id='" + roomArray[i].roomNumber + "'><h2 class='room text availYellow'>" + roomArray[i].roomNumber + "</h2><div class='icon theCapacityNum col-md-8 col-sm-8 col-xs-8'>" + roomArray[i].capacity + "</div>" + computerIcon(i) + "<button class='thirty btn btn-book'><span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>" + thirtyTime + "</button>" + assign60Button(i) + "</div>");
+            $('#rooms').append("<div class='roomBlock' id='" + roomArray[i].roomNumber + "'><div class='roomInfo'><h2 class='room text" + isLongRoom + "'>" + roomArray[i].roomNumber + "</h2><div class='icons'>" + computerIcon(i) + "<div class='icon theCapacityNum" + digits + "'>" + roomArray[i].capacity + "</div></div></div><div class='bookers'><button class='thirty btn btn-book bookerA' id='" + roomArray[i].roomNumber + "'><span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>" + thirtyTime + "</button>" + assign60Button(i) + "</div></div></div>");
             //if room contains a computer then append the computer icon
         }else {
             console.log(roomArray[i].roomNumber + " " + roomArray[i].available30);
@@ -251,7 +302,7 @@ function appendInfo(){
 function assign60Button(i){
     if(roomArray[i].available60 == true){
         // 60 min button
-        return "<button class='sixty btn btn-book'><span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>" + sixtyTime + "</button>"
+        return "<button class='sixty btn btn-book bookerB' id='" + roomArray[i].roomNumber + "'><span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>" + sixtyTime + "</button>"
     }
     else{
         // unavailable button
@@ -281,48 +332,46 @@ $(document).ready(function(){
     buttonTime();
     ajaxCall();
 
-    //console.log(currentTime.getDate() + " " + monthNames[currentTime.getMonth()] + " " + currentTime.getFullYear() + " " + thirtyTime + ":00"
-    //);
-    //var jack = currentTime.getDate() + " " + monthNames[currentTime.getMonth()] + " " + currentTime.getFullYear() + " " + thirtyTime + ":00";
-    //console.log(Date.parse(reserveThirtyTime));
-    //console.log(Date.parse("Mon, 25 Dec 1995"));
-    //console.log(Date.parse("Mon, 25 Dec 1995 13:30:00"));
-    //console.log(Date.parse("25 Dec 1995 13:30:00"));
-    //console.log(currentTime.getDate());
-    //console.log(currentTime.getMonth());
-    //console.log(currentTime.getFullYear());
-    //console.log(Date.parse(jack));
-
-    //shows as miliseconds
-    //console.log(Date.parse("2015-09-18T10:00:00-05:00"));
-    //shows as NaN
-    //console.log("milTime:" + Date.parse(milSixtyTime));
-
-    //appendInfo();
-    //console.log("current time: " + currentTime.getTime());
-    //console.log(currentTime.getYear());
-
     // triggers to refresh page on each quarter hour
     autoRefresh(00,0);
     autoRefresh(15,0);
     autoRefresh(30,0);
     autoRefresh(45,0);
 
-
-
     $('#rooms').on('click', ".thirty", function(){
-        ajaxCall();
-        //confirmationThirtyAlert($(this));
-        //console.log("THIS!");
-        //roomConfirmationThirty();
+        var btn=$(this);
+        var postLocation = $(this).attr("id");
+        postThirtyEvent = {
+            summary: 'squatter@tpt.org',
+            location: postLocation,
+            start: currentTime.getFullYear() + '-0'+monthNum+ '-'+currentTime.getDate()+'T'+currentTime.getHours()+':'+currentTime.getMinutes()+':00'+'-05:00',
+            end: currentTime.getFullYear() + '-0'+monthNum+'-'+currentTime.getDate()+'T'+milThirtyTime+':00'+'-05:00'
+        };
+        bookRoomThirty(btn);
+        var overlay = $("<div style='width:10000px; height: 9999px; margin-left: -5000px; top: 0; z-index: 100; position: absolute; background: lightgray; opacity: 0.5; text-align: center; font-size: large; padding-top: 25%; font-weight: bold;'></div>");
+        $("body").append(overlay);
     });
     $('#rooms').on('click', ".sixty", function(){
-        confirmationSixtyAlert($(this));
+        var btn=$(this);
+        var postLocation = $(this).attr("id");
+        //console.log("hey this is postlocation: " + postLocation);
+        postSixtyEvent = {
+            summary: 'squatter@tpt.org',
+            location: postLocation,
+            start: currentTime.getFullYear() + '-0'+monthNum+ '-'+currentTime.getDate()+'T'+currentTime.getHours()+':'+currentTime.getMinutes()+':00'+'-05:00',
+            end: currentTime.getFullYear() + '-0'+monthNum+ '-'+currentTime.getDate()+'T'+milSixtyTime+':00'+'-05:00'
+        };
+        bookRoomSixty(btn);
+        var overlay = $("<div style='width:10000px; height: 9999px; margin-left: -5000px; top: 0; z-index: 100; position: absolute; background: lightgray; opacity: 0.5; text-align: center; font-size: large; padding-top: 25%; font-weight: bold;'></div>");
+        $("body").append(overlay);
+        //confirmationSixtyAlert($(this));
         //roomConfirmationSixty();
     });
 
-////// This is temporary by Jim for testing purposes ///////
+//// This is temporary by Jim for testing purposes ///////
     $('#rooms').on('click', ".computerStatusIcon", function(){
+        var overlay = $("<div style='width:10000px; height: 9999px; margin-left: -5000px; top: 0; z-index: 100; position: absolute; background: lightgray; opacity: 0.5; text-align: center; font-size: large; padding-top: 25%; font-weight: bold;'></div>");
+        $("body").append(overlay);
         errorAlert($(this));
 
     });
@@ -330,7 +379,7 @@ $(document).ready(function(){
 
 }); // end document ready
 
-
+//array of info for each meeting room
 
 var roomArray = [
     {

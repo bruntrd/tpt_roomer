@@ -20,7 +20,7 @@ body {
     margin: 3px 0 0;
 }
 
-.room30,.room60 {
+.roomBlock {
     border-radius: 5px;
     background-color: #41a8c6;
     margin: 5px 0 0 0;
@@ -96,6 +96,7 @@ span {
     border: solid 5px #556;
     background-color: #000;
     color: #fff;
+    z-index: 200;
 }
 
 #logoHeader {
@@ -108,6 +109,7 @@ span {
     margin: 4px;
     width: 50%;
     background-color: #e03643;
+    z-index: 200;
 }
 
 .popUp {
@@ -280,7 +282,7 @@ body {
         margin-right: 1px;
         display: inline-block;
     }
-    .room30,.room60 {
+    .roomBlock {
         margin: 2px 0 0 0;
         width: 100%;
         padding: 5px 10px;

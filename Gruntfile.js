@@ -57,8 +57,8 @@ module.exports = function(grunt){
                     "styles/style_white.css"
                 ],
                 "dest": "server/public/assets"
-
             }
+
         }
     });
 
