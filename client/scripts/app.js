@@ -248,9 +248,9 @@ function confirmationSixtyAlert(room){
 //function used within appendInfo function to display computer icon for boolean true
 function computerIcon(i){
     if (roomArray[i].computer == true){
-        return '<img src="/assets/images/computer.png" class="icon computerStatusIcon col-md-4 col-sm-4 col-xs-4">'
+        return '<div>' + '<img src="/assets/images/computer.svg" class="icon computerStatusIcon" onerror="/assets/images/computer.png">' + '</div>';
     } else
-    return "";
+    return '<div class="icon noComputerStatusIcon"></div>';
 }
 
 
@@ -270,11 +270,25 @@ function errorAlert(room) {
 
 // loops through room array to append available conference rooms to the page
 function appendInfo(){
+
+    buttonTime();
+    console.log("room array: ");
+    console.log(roomArray);
+
     for(var i = 0; i<roomArray.length; i++){
+        //checks capacity and sets a class accordingly.
+        var digits = "";
+        if(roomArray[i].capacity > 9){
+            digits = " digits2";
+        } else
+            digits = " digits1";
+        //checks for the number of characters in a room title and adds a class if it's more than 11
+        var isLongRoom = "";
+        if(roomArray[i].roomNumber.length > 8){isLongRoom = " longRoom"}
         //if the room is available for at least 1/2 hour then append it
         //if the room fis available for less than one hour append it else "unavailable"
         if(roomArray[i].available30 == true) {
-            $('#rooms').append("<div class='container room30' id='" + roomArray[i].roomNumber + "'><h2 class='room text availYellow'>" + roomArray[i].roomNumber + "</h2><div class='icon theCapacityNum col-md-8 col-sm-8 col-xs-8'>" + roomArray[i].capacity + "</div>" + computerIcon(i) + "<button class='thirty btn btn-book'><span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>" + thirtyTime + "</button>" + assign60Button(i) + "</div>");
+            $('#rooms').append("<div class='roomBlock' id='" + roomArray[i].roomNumber + "'><div class='roomInfo'><h2 class='room text" + isLongRoom + "'>" + roomArray[i].roomNumber + "</h2><div class='icons'>" + computerIcon(i) + "<div class='icon theCapacityNum" + digits + "'>" + roomArray[i].capacity + "</div></div></div><div class='bookers'><button class='thirty btn btn-book bookerA'><span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>" + thirtyTime + "</button>" + assign60Button(i) + "</div></div></div>");
             //if room contains a computer then append the computer icon
         }else {
             console.log(roomArray[i].roomNumber + " " + roomArray[i].available30);
@@ -288,7 +302,7 @@ function appendInfo(){
 function assign60Button(i){
     if(roomArray[i].available60 == true){
         // 60 min button
-        return "<button class='sixty btn btn-book'><span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>" + sixtyTime + "</button>"
+        return "<button class='sixty btn btn-book bookerB'><span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>" + sixtyTime + "</button>"
     }
     else{
         // unavailable button
