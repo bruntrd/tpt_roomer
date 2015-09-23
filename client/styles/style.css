@@ -31,11 +31,6 @@ body {
 .room {
     margin: 6px auto;
     color: #000;
-}
-
-.icons {
-    margin: 6px 0;
-    display: flex;
     float: left;
 }
 
@@ -109,7 +104,6 @@ span {
     margin: 4px;
     width: 50%;
     background-color: #e03643;
-    z-index: 200;
 }
 
 .popUp {
@@ -172,10 +166,11 @@ body {
     display: inline-flex;
     float: right;
     margin: 7px 4px 0;
-    width: 100px;
+    width: 230px;
 }
 .roomInfo {
     display: inline-flex;
+    float: left;
 }
 .bookerA,.bookerB {
     height: 45px;
@@ -184,13 +179,10 @@ body {
     padding: 3px;
 }
 .bookerA {
-    display: block;
     float: none;
-    margin-bottom: 3px;
     margin-right: 3px;
 }
 .bookerB {
-    display: block;
     float: none;
 }
 .btn-disabled {
@@ -203,8 +195,16 @@ body {
 .icons {
     float: right;
 }
+
+.icons {
+    margin: 6px 0;
+    float: left;
+    width: 150px;
+}
 .icon {
     height: 45px;
+    display: block;
+    float:left;
 }
 
 @media (max-width: 700px) {
@@ -218,6 +218,10 @@ body {
     }
     .bookers {
         margin: 7px 4px 0;
+        width: 192px;
+    }
+    .icons {
+        width: 119px;
     }
     .icon {
         height: 38px;
@@ -229,8 +233,7 @@ body {
         padding: 2px;
     }
     .bookerA {
-        margin-bottom: 4px;
-        margin-right: 3px;
+         margin-right: 3px;
     }
 
     .theCapacityNum {
@@ -269,6 +272,9 @@ body {
     body {
         max-width: 420px;
         margin: 0 auto;
+    }
+    .bookerA {
+        margin-bottom: 4px;
     }
     #logoHeader {
         text-align: center;

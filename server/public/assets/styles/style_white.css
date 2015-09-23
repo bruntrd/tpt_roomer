@@ -91,6 +91,7 @@ span {
     border: solid 5px #556;
     background-color: #000;
     color: #fff;
+    z-index: 200;
 }
 
 #logoHeader {
@@ -285,10 +286,13 @@ body {
         margin-right: 1px;
         display: inline-block;
     }
-    .room30,.room60 {
+    .roomBlock {
         margin: 2px 0 0 0;
         width: 100%;
         padding: 5px 10px;
+    }
+    .bookerA {
+        margin-bottom: 2px;
     }
     .bookers {
         display: inline-block;
