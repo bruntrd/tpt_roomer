@@ -76,14 +76,8 @@ function bookRoomThirty(){
         data: postThirtyEvent,
         success: function(data){
             console.log(data);
-            confirmationThirtyAlert($(this)).delay(5000).then(
-                function(){
-                    location.reload();
-                }
-            );
-
-            //location.reload();
-           // pageReload();
+            confirmationThirtyAlert($(this));
+            setTimeout(function() { window.location.reload(true); }, 5000);
         },
         error: function(request){
             errorAlert($(this));
@@ -99,8 +93,7 @@ function bookRoomSixty(){
         success: function(data){
             console.log(data);
             confirmationSixtyAlert($(this));
-            //location.reload();
-            pageReload();
+            setTimeout(function() { window.location.reload(true); }, 5000);
         },
         error: function(request){
             errorAlert($(this));
@@ -109,9 +102,6 @@ function bookRoomSixty(){
     })
 }
 
-function pageReload(){
-    location.reload().delay(5000);
-}
 //// NOT FUNCTIONAL - reserves a room for 30 min. via google calendar
 //function roomConfirmationThirty(){
 //    $.ajax({
@@ -246,7 +236,7 @@ function customConfirmationAlert(msg,duration) {
 // confirms a ~30 minute meeting has been booked
 function confirmationThirtyAlert(room) {
     customConfirmationAlert("You have booked " + room.parent().attr('id') + " through " + thirtyTime,"4000");
-    location.reload();
+    //location.reload();
 }
 
 // confirms a ~60 minute meeting has been booked
