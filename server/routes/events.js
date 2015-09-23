@@ -55,7 +55,7 @@ router.get('/', function(req, res) {
 
     calendar.events.list({
         calendarId: googleConfig.calendarId,
-        maxResults: 20,
+        maxResults: 9999,
         timeMin: today + '00:00:00.000Z',
         timeMax: today + '23:59:59.000Z',
         auth: oAuthClient
