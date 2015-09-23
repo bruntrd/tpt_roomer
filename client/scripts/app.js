@@ -69,14 +69,14 @@ function buttonTime() {
     }
 }
 
-function bookRoomThirty(){
+function bookRoomThirty(btn){
+
     $.ajax({
         type: "POST",
         url:"/events",
         data: postThirtyEvent,
         success: function(data){
-            console.log(data);
-            confirmationThirtyAlert($(this));
+            confirmationThirtyAlert(btn);
             setTimeout(function() { window.location.reload(true); }, 5000);
         },
         error: function(request){
@@ -85,14 +85,13 @@ function bookRoomThirty(){
         }
     })
 }
-function bookRoomSixty(){
+function bookRoomSixty(btn){
     $.ajax({
         type: "POST",
         url:"/events",
         data: postSixtyEvent,
         success: function(data){
-            console.log(data);
-            confirmationSixtyAlert($(this));
+            confirmationSixtyAlert(btn);
             setTimeout(function() { window.location.reload(true); }, 5000);
         },
         error: function(request){
@@ -236,7 +235,9 @@ function customConfirmationAlert(msg) {
 
 // confirms a ~30 minute meeting has been booked
 function confirmationThirtyAlert(room) {
-    customConfirmationAlert("You have booked " + room.parent().attr('id') + " through " + thirtyTime);
+    console.log("room");
+    console.log(room);
+    customConfirmationAlert("You have booked " + room.attr('id') + " through " + thirtyTime);
 }
 
 // confirms a ~60 minute meeting has been booked
@@ -287,7 +288,7 @@ function appendInfo(){
         //if the room is available for at least 1/2 hour then append it
         //if the room fis available for less than one hour append it else "unavailable"
         if(roomArray[i].available30 == true) {
-            $('#rooms').append("<div class='roomBlock' id='" + roomArray[i].roomNumber + "'><div class='roomInfo'><h2 class='room text" + isLongRoom + "'>" + roomArray[i].roomNumber + "</h2><div class='icons'>" + computerIcon(i) + "<div class='icon theCapacityNum" + digits + "'>" + roomArray[i].capacity + "</div></div></div><div class='bookers'><button class='thirty btn btn-book bookerA'><span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>" + thirtyTime + "</button>" + assign60Button(i) + "</div></div></div>");
+            $('#rooms').append("<div class='roomBlock' id='" + roomArray[i].roomNumber + "'><div class='roomInfo'><h2 class='room text" + isLongRoom + "'>" + roomArray[i].roomNumber + "</h2><div class='icons'>" + computerIcon(i) + "<div class='icon theCapacityNum" + digits + "'>" + roomArray[i].capacity + "</div></div></div><div class='bookers'><button class='thirty btn btn-book bookerA' id='" + roomArray[i].roomNumber + "'><span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>" + thirtyTime + "</button>" + assign60Button(i) + "</div></div></div>");
             //if room contains a computer then append the computer icon
         }else {
             console.log(roomArray[i].roomNumber + " " + roomArray[i].available30);
@@ -301,7 +302,7 @@ function appendInfo(){
 function assign60Button(i){
     if(roomArray[i].available60 == true){
         // 60 min button
-        return "<button class='sixty btn btn-book bookerB'><span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>" + sixtyTime + "</button>"
+        return "<button class='sixty btn btn-book bookerB' id='" + roomArray[i].roomNumber + "'><span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>" + sixtyTime + "</button>"
     }
     else{
         // unavailable button
@@ -338,17 +339,19 @@ $(document).ready(function(){
     autoRefresh(45,0);
 
     $('#rooms').on('click', ".thirty", function(){
-        var postLocation = $(this).parent().attr("id");
+        var btn=$(this);
+        var postLocation = $(this).attr("id");
         postThirtyEvent = {
             summary: 'squatter@tpt.org',
             location: postLocation,
             start: currentTime.getFullYear() + '-0'+monthNum+ '-'+currentTime.getDate()+'T'+currentTime.getHours()+':'+currentTime.getMinutes()+':00'+'-05:00',
             end: currentTime.getFullYear() + '-0'+monthNum+'-'+currentTime.getDate()+'T'+milThirtyTime+':00'+'-05:00'
         };
-        bookRoomThirty();
+        bookRoomThirty(btn);
     });
     $('#rooms').on('click', ".sixty", function(){
-        var postLocation = $(this).parent().attr("id");
+        var btn=$(this);
+        var postLocation = $(this).attr("id");
         console.log("hey this is postlocation: " + postLocation);
         postSixtyEvent = {
             summary: 'squatter@tpt.org',
@@ -356,7 +359,7 @@ $(document).ready(function(){
             start: currentTime.getFullYear() + '-0'+monthNum+ '-'+currentTime.getDate()+'T'+currentTime.getHours()+':'+currentTime.getMinutes()+':00'+'-05:00',
             end: currentTime.getFullYear() + '-0'+monthNum+ '-'+currentTime.getDate()+'T'+milSixtyTime+':00'+'-05:00'
         };
-        bookRoomSixty();
+        bookRoomSixty(btn);
         //confirmationSixtyAlert($(this));
         //roomConfirmationSixty();
     });
