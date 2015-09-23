@@ -77,7 +77,7 @@ function bookRoomThirty(btn){
         data: postThirtyEvent,
         success: function(data){
             confirmationThirtyAlert(btn);
-            setTimeout(function() { window.location.reload(true); }, 5000);
+            setTimeout(function() { window.location.reload(true); }, 3001);
         },
         error: function(request){
             errorAlert($(this));
@@ -92,7 +92,7 @@ function bookRoomSixty(btn){
         data: postSixtyEvent,
         success: function(data){
             confirmationSixtyAlert(btn);
-            setTimeout(function() { window.location.reload(true); }, 5000);
+            setTimeout(function() { window.location.reload(true); }, 3001);
         },
         error: function(request){
             errorAlert($(this));
@@ -242,7 +242,7 @@ function confirmationThirtyAlert(room) {
 
 // confirms a ~60 minute meeting has been booked
 function confirmationSixtyAlert(room){
-    customConfirmationAlert("You have booked " + room.parent().attr('id') +  " through " + sixtyTime);
+    customConfirmationAlert("You have booked " + room.attr('id') +  " through " + sixtyTime);
 }
 
 //function used within appendInfo function to display computer icon for boolean true
@@ -348,11 +348,13 @@ $(document).ready(function(){
             end: currentTime.getFullYear() + '-0'+monthNum+'-'+currentTime.getDate()+'T'+milThirtyTime+':00'+'-05:00'
         };
         bookRoomThirty(btn);
+        var overlay = $("<div style='width:10000px; height: 9999px; margin-left: -5000px; top: 0; z-index: 100; position: absolute; background: lightgray; opacity: 0.5; text-align: center; font-size: large; padding-top: 25%; font-weight: bold;'></div>");
+        $("body").append(overlay);
     });
     $('#rooms').on('click', ".sixty", function(){
         var btn=$(this);
         var postLocation = $(this).attr("id");
-        console.log("hey this is postlocation: " + postLocation);
+        //console.log("hey this is postlocation: " + postLocation);
         postSixtyEvent = {
             summary: 'squatter@tpt.org',
             location: postLocation,
@@ -360,15 +362,19 @@ $(document).ready(function(){
             end: currentTime.getFullYear() + '-0'+monthNum+ '-'+currentTime.getDate()+'T'+milSixtyTime+':00'+'-05:00'
         };
         bookRoomSixty(btn);
+        var overlay = $("<div style='width:10000px; height: 9999px; margin-left: -5000px; top: 0; z-index: 100; position: absolute; background: lightgray; opacity: 0.5; text-align: center; font-size: large; padding-top: 25%; font-weight: bold;'></div>");
+        $("body").append(overlay);
         //confirmationSixtyAlert($(this));
         //roomConfirmationSixty();
     });
 
-////// This is temporary by Jim for testing purposes ///////
-//    $('#rooms').on('click', ".computerStatusIcon", function(){
-//        errorAlert($(this));
-//
-//    });
+//// This is temporary by Jim for testing purposes ///////
+    $('#rooms').on('click', ".computerStatusIcon", function(){
+        var overlay = $("<div style='width:10000px; height: 9999px; margin-left: -5000px; top: 0; z-index: 100; position: absolute; background: lightgray; opacity: 0.5; text-align: center; font-size: large; padding-top: 25%; font-weight: bold;'></div>");
+        $("body").append(overlay);
+        errorAlert($(this));
+
+    });
 
 
 }); // end document ready
