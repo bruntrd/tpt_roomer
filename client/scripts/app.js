@@ -206,27 +206,28 @@ function roomLoop(){
     }
 }
 
-////////// The Block Edited by Jim. Keep as is////////
+////////// This Block Edited by Jim. Keep as is////////
 // custom dialogue box for reservation confirmation alert message
-function customConfirmationAlert(msg,duration) {
+function customConfirmationAlert(msg) {
+    console.log("customConf coming up");
     var styler = document.createElement("div");
     styler.setAttribute("id","confirmationPopUp");
     styler.setAttribute("class","popUp");
     styler.innerHTML = "<div>Confirmation<div id='popUpYesBox'>" + msg + ".</div></div>";
-    /*setTimeout(function() {
+    setTimeout(function() {
         styler.parentNode.removeChild(styler);
-    },duration);*/
+    },3000);
     document.body.appendChild(styler);
 }
 
 // confirms a ~30 minute meeting has been booked
 function confirmationThirtyAlert(room) {
-    customConfirmationAlert("You have booked " + room.parent().attr('id') + " through " + thirtyTime,"4000");
+    customConfirmationAlert("You have booked " + room.parent().attr('id') + " through " + thirtyTime);
 }
 
 // confirms a ~60 minute meeting has been booked
 function confirmationSixtyAlert(room){
-    customConfirmationAlert("You have booked " + room.parent().attr('id') +  " through " + sixtyTime, "4000");
+    customConfirmationAlert("You have booked " + room.parent().attr('id') +  " through " + sixtyTime);
 }
 
 //function used within appendInfo function to display computer icon for boolean true
@@ -241,15 +242,15 @@ function computerIcon(i){
 ////////// The Block Edited by Jim. Keep as is////////
 // error message if someone tries to book a room that has JUST been booked by someone else.
 function errorAlert(room) {
-    console.log("error fired");
     var styler = document.createElement("div");
     styler.setAttribute("id","denialPopUp");
     styler.setAttribute("class","popUp");
     styler.innerHTML = "<div>Sorry! <div id='popUpNoBox'>" + room.parent().attr('id') + " was booked by someone else since you loaded the page.  Please choose a different conference room.</div><button id='confirmDoubleBook'>OK</button></div>";
-    /*setTimeout(function() {
-     styler.parentNode.removeChild(styler);
-     },duration);*/
     document.body.appendChild(styler);
+    $('#theBody').on('click', "#confirmDoubleBook", function() {
+        styler.parentNode.removeChild(styler);
+        location.reload();
+    });
 }
 
 // loops through room array to append available conference rooms to the page
@@ -335,7 +336,7 @@ $(document).ready(function(){
         bookRoomThirty();
         console.log(postThirtyEvent);
         ajaxCall();
-        //confirmationThirtyAlert($(this));
+        confirmationThirtyAlert($(this));
         //roomConfirmationThirty();
     });
     $('#rooms').on('click', ".sixty", function(){
