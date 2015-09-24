@@ -8,6 +8,13 @@ body {
     font-family: GothaMed, serif;
 }
 
+.roomHighlight {
+    font-size: 125%;
+    color: #000;
+    font-weight: 900;
+    line-height: .8;
+}
+
 #appTitle {
     text-align: center;
     color: #fff;

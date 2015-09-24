@@ -231,12 +231,12 @@ function customConfirmationAlert(msg) {
 function confirmationThirtyAlert(room) {
     //console.log("room");
     //console.log(room);
-    customConfirmationAlert("You have booked " + room.attr('id') + " through " + thirtyTime);
+    customConfirmationAlert("You have booked <br><span class='roomHighlight'>" + room.attr('id') + "</span> through " + thirtyTime);
 }
 
 // confirms a ~60 minute meeting has been booked
 function confirmationSixtyAlert(room){
-    customConfirmationAlert("You have booked " + room.attr('id') +  " through " + sixtyTime);
+    customConfirmationAlert("You have booked <br><span class='roomHighlight'>" + room.attr('id') + "</span> through " + sixtyTime);
 }
 
 //function used within appendInfo function to display computer icon for boolean true
@@ -254,7 +254,7 @@ function errorAlert(room) {
     var styler = document.createElement("div");
     styler.setAttribute("id","denialPopUp");
     styler.setAttribute("class","popUp");
-    styler.innerHTML = "<div>Sorry! <div id='popUpNoBox'>" + room.parent().attr('id') + " was booked by someone else since you loaded the page.  Please choose a different conference room.</div><button id='confirmDoubleBook'>OK</button></div>";
+    styler.innerHTML = "<div>Sorry! <div id='popUpNoBox'><span class='roomHighlight'>" + room.parent().attr('id') + "</span> was booked by someone else since you loaded the page.  Please choose a different conference room.</div><button id='confirmDoubleBook'>OK</button></div>";
     document.body.appendChild(styler);
     $('#theBody').on('click', "#confirmDoubleBook", function() {
         styler.parentNode.removeChild(styler);
