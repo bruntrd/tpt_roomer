@@ -8,6 +8,10 @@ body {
     font-family: GothaMed, serif;
 }
 
+h2{
+  text-align: center;
+}
+
 #appTitle {
     text-align: center;
     color: #fff;

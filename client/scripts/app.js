@@ -80,7 +80,6 @@ function bookRoomThirty(btn){
         },
         error: function(request){
             errorAlert($(this));
-            location.reload();
         }
     })
 }
@@ -95,7 +94,6 @@ function bookRoomSixty(btn){
         },
         error: function(request){
             errorAlert($(this));
-            location.reload();
         }
     })
 }
@@ -262,14 +260,30 @@ function errorAlert(room) {
     });
 }
 
+// this function appends a message to the page if no rooms are available to be booked
+function blankPageMessage(){
+    var trueArray = [];
+    for(var k = 0; k < roomArray.length; k++){
+        if(roomArray[k].available30 == true){
+            trueArray.push(roomArray[k].roomNumber);
+        }
+    }
+    console.log(trueArray);
+    if (trueArray.length == 0){
+        $('#rooms').append('<div id="denialPopUp"><div><h2>Sorry!</h2><div id="popUpNoBox">There are currently no rooms available to reserve.</div></div></div>')
+    }
+}
+
 // loops through room array to append available conference rooms to the page
 function appendInfo(){
 
-    buttonTime();
+    //buttonTime();
     //console.log("room array: ");
     //console.log(roomArray);
 
-    for(var i = 0; i<roomArray.length; i++){
+    blankPageMessage();
+
+    for(var i = 0; i < roomArray.length; i++){
         //checks capacity and sets a class accordingly.
         var digits = "";
         if(roomArray[i].capacity > 9){
@@ -288,8 +302,7 @@ function appendInfo(){
             //console.log(roomArray[i].roomNumber + " " + roomArray[i].available30);
             //console.log(roomArray[i].roomNumber + 'not appended');
         }
-        }
-
+    }
 }
 
 
