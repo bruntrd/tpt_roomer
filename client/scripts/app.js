@@ -14,7 +14,6 @@ var milThirtyTime;
 var milSixtyTime;
 
 
-
 ////////// functions //////////
 
 // function to calculate reservation end time based on rounded time on click
@@ -140,16 +139,12 @@ function ajaxCall(){
         url: '/events',
         success: function(response){
             eventData = response.items;
-            console.log("HERE" + response.items);
-            console.log("EVENT DATA: "+ eventData);
-            //console.log(new Date(eventData[0].start.dateTime).getTime());
+
+            console.log("EVENT DATA: ");
             console.log(eventData);
 
-            //console.log(response.items[0].start.getTime());
             roomLoop();
             appendInfo();
-            //console.log("this is reserver 60 time: "+ reserveSixtyTime);
-            //console.log("this is reserve 30 time: "+ reserveThirtyTime);
             //console.log(roomArray[1].available30);
             //console.log(roomArray[1].available60);
 
@@ -167,15 +162,21 @@ function data30Loop(i){
     for(var j = 0; j < eventData.length; j++) {
         if (eventData[j].location == roomArray[i].roomNumber) {
             if (new Date(eventData[j].end.dateTime).getTime() > currentTime.getTime() && currentTime.getTime() > new Date(eventData[j].start.dateTime).getTime()) {
+                console.log(roomArray[i].roomNumber + " flag = false, 1");
                 return roomArray[i].available30 = false;
+
             }
             else if (currentTime.getTime() < new Date(eventData[j].start.dateTime).getTime() && new Date(eventData[j].start.dateTime).getTime() < Date.parse(reserveThirtyTime)) {
+                console.log(roomArray[i].roomNumber + " flag = false, 2");
                 return roomArray[i].available30 = false;
+
             }
             else if (currentTime.getTime() <= new Date(eventData[j].start.dateTime).getTime() && Date.parse(reserveThirtyTime) >= new Date(eventData[j].end.dateTime).getTime()) {
+                console.log(roomArray[i].roomNumber + " flag = false, 3");
                 return roomArray[i].available30 = false;
             }
             else if (currentTime.getTime() >= new Date(eventData[j].start.dateTime).getTime() && Date.parse(reserveThirtyTime) <= new Date(eventData[j].end.dateTime).getTime()) {
+                console.log(roomArray[i].roomNumber + " flag = false, 4");
                 return roomArray[i].available30 = false;
             }
         }
@@ -186,7 +187,6 @@ function data30Loop(i){
 // checks for 60 min meeting and sets data flag to false if necessary
 function data60Loop(i) {
     reserveSixtyTime = currentTime.getDate() + " " + monthNames[currentTime.getMonth()] + " " + currentTime.getFullYear() + " " + milSixtyTime + ":00";
-    console.log("Look Here!" + reserveSixtyTime);
     for (var j = 0; j < eventData.length; j++) {
         if (eventData[j].location == roomArray[i].roomNumber) {
             if (new Date(eventData[j].end.dateTime).getTime() > currentTime.getTime() && currentTime.getTime() > new Date(eventData[j].start.dateTime).getTime()) {
@@ -216,7 +216,7 @@ function roomLoop(){
 ////////// This Block Edited by Jim. Keep as is////////
 // custom dialogue box for reservation confirmation alert message
 function customConfirmationAlert(msg) {
-    console.log("customConf coming up");
+    //console.log("customConf coming up");
     var styler = document.createElement("div");
     styler.setAttribute("id","confirmationPopUp");
     styler.setAttribute("class","popUp");
@@ -229,8 +229,8 @@ function customConfirmationAlert(msg) {
 
 // confirms a ~30 minute meeting has been booked
 function confirmationThirtyAlert(room) {
-    console.log("room");
-    console.log(room);
+    //console.log("room");
+    //console.log(room);
     customConfirmationAlert("You have booked " + room.attr('id') + " through " + thirtyTime);
 }
 
@@ -266,8 +266,8 @@ function errorAlert(room) {
 function appendInfo(){
 
     buttonTime();
-    console.log("room array: ");
-    console.log(roomArray);
+    //console.log("room array: ");
+    //console.log(roomArray);
 
     for(var i = 0; i<roomArray.length; i++){
         //checks capacity and sets a class accordingly.
@@ -285,10 +285,11 @@ function appendInfo(){
             $('#rooms').append("<div class='roomBlock' id='" + roomArray[i].roomNumber + "'><div class='roomInfo'><h2 class='room text" + isLongRoom + "'>" + roomArray[i].roomNumber + "</h2><div class='icons'>" + computerIcon(i) + "<div class='icon theCapacityNum" + digits + "'>" + roomArray[i].capacity + "</div></div></div><div class='bookers'><button class='thirty btn btn-book bookerA' id='" + roomArray[i].roomNumber + "'><span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>" + thirtyTime + "</button>" + assign60Button(i) + "</div></div></div>");
             //if room contains a computer then append the computer icon
         }else {
-            console.log(roomArray[i].roomNumber + " " + roomArray[i].available30);
-            console.log(roomArray[i].roomNumber + 'not appended');
+            //console.log(roomArray[i].roomNumber + " " + roomArray[i].available30);
+            //console.log(roomArray[i].roomNumber + 'not appended');
         }
         }
+
 }
 
 

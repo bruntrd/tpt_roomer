@@ -49,7 +49,7 @@ router.post('/', function(req,res,next){
         auth: oAuthClient
     }, function(err, event){
         if (err) {
-            console.log('There was an error contacing google calendar: ' + err);
+            console.log('There was an error contacting google calendar: ' + err);
             return;
         }
         res.send("yes");
