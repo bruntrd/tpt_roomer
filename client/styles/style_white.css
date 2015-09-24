@@ -22,7 +22,7 @@ body {
 
 .roomBlock {
     border-radius: 5px;
-    background-color: #41a8c6;
+    background-color: #fff;
     margin: 5px 0 0 0;
     display: inline-block;
     width: 100%;
@@ -149,8 +149,8 @@ body {
 
 .theCapacityNum {
     text-align: right;
-    color: #41a8c6;
-    background-image: url(../images/numberContainer.svg);
+    color: #fff;
+    background-image: url(../images/numberContainer-BlueBg.svg);
     background-repeat: no-repeat;
     padding: 0 1px;
     width: 90px;
@@ -163,7 +163,7 @@ body {
     padding: 0 13px;
 }
 .bookers {
-    display: inline-flex;
+    display: inline;
     float: right;
     margin: 7px 4px 0;
     width: 230px;
@@ -192,9 +192,6 @@ body {
     margin: 7px;
     font-size: 40px;
 }
-.icons {
-    float: right;
-}
 
 .icons {
     margin: 6px 0;
@@ -217,7 +214,7 @@ body {
         margin: 16px 0 4px;
     }
     .bookers {
-        margin: 7px 4px 0;
+        margin: 7px 0 0;
         width: 192px;
     }
     .icons {
@@ -233,7 +230,7 @@ body {
         padding: 2px;
     }
     .bookerA {
-         margin-right: 3px;
+        margin-right: 3px;
     }
 
     .theCapacityNum {
@@ -297,7 +294,6 @@ body {
     .bookerA {
         margin-bottom: 2px;
     }
-
     .bookers {
         display: inline-block;
         vertical-align: middle;
