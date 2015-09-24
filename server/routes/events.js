@@ -6,7 +6,7 @@
     redirectURL: 'http://localhost:3000/auth'
 };*/
 
-// use this block for heroku
+// use this block for heroku app
 var googleConfig = {
     clientID: '721997656029-ltfbn93eoag67dtfd2vmpok1pgpqltnd.apps.googleusercontent.com',
     clientSecret: 'tU-MvIgxQskkYgXJ89uoko-v',
