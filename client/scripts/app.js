@@ -178,9 +178,6 @@ function data30Loop(i){
             else if (currentTime.getTime() >= new Date(eventData[j].start.dateTime).getTime() && Date.parse(reserveThirtyTime) <= new Date(eventData[j].end.dateTime).getTime()) {
                 return roomArray[i].available30 = false;
             }
-            else{
-                return roomArray[i].available30 = true;
-            }
         }
     }
 }
@@ -203,9 +200,6 @@ function data60Loop(i) {
             }
             else if (currentTime.getTime() >= new Date(eventData[j].start.dateTime).getTime() && Date.parse(reserveSixtyTime) <= new Date(eventData[j].end.dateTime).getTime()) {
                 return roomArray[i].available60 = false;
-            }
-            else {
-                return roomArray[i].available60 = true;
             }
         }
     }
