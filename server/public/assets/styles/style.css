@@ -146,6 +146,11 @@ body {
     max-width: 775px;
     margin: 0 auto;
 }
+
+h2{
+    text-align: center;
+}
+
 .noComputerStatusIcon {
     display: none;
 }
@@ -338,5 +343,3 @@ body {
         margin-top: -55px;
     }
 }
-
-
