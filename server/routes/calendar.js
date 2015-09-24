@@ -9,7 +9,7 @@
 // use this block for heroku
 var googleConfig = {
     clientID: '721997656029-ltfbn93eoag67dtfd2vmpok1pgpqltnd.apps.googleusercontent.com',
-    clientSecret: 'nEZ7d93CL5gIeIIwPfeyOao6',
+    clientSecret: 'tU-MvIgxQskkYgXJ89uoko-v',
     calendarId: 'tpt.roomer@gmail.com',
     redirectURL: 'https://tpt-demo.herokuapp.com/auth'
 };
