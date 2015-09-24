@@ -341,10 +341,10 @@ $(document).ready(function(){
     ajaxCall();
 
     // triggers to refresh page on each quarter hour
-    autoRefresh(00,0);
+    /*autoRefresh(00,0);
     autoRefresh(15,0);
     autoRefresh(30,0);
-    autoRefresh(45,0);
+    autoRefresh(45,0);*/
 
     $('#rooms').on('click', ".thirty", function(){
         var btn=$(this);
