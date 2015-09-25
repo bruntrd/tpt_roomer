@@ -67,7 +67,7 @@ function buttonTime() {
         }
     }
 }
-
+//ajax post to google calendar API when booking a room for thirty minutes
 function bookRoomThirty(btn){
 
     $.ajax({
@@ -83,6 +83,7 @@ function bookRoomThirty(btn){
         }
     })
 }
+//ajax post to google calendar API when booking a room for sixty minutes
 function bookRoomSixty(btn){
     $.ajax({
         type: "POST",
@@ -98,39 +99,8 @@ function bookRoomSixty(btn){
     })
 }
 
-//// NOT FUNCTIONAL - reserves a room for 30 min. via google calendar
-//function roomConfirmationThirty(){
-//    $.ajax({
-//        //this needs to book a room for 30 min. via google calendar
-//        url: s,
-//        success: function(response){
-//            confirmationThirtyAlert($(this));
-//            location.reload(); // need to test - should refresh page
-//        },
-//        error: function(request){
-//            errorAlert($(this));
-//            location.reload(); // need to test - should refresh page
-//        }
-//    })
-//}
-//
-//// NOT FUNCTIONAL - reserves a room for 60 min. via google calendar
-//function roomConfirmationSixty(){
-//    $.ajax({
-//        //this needs to book a room for 60 min. via google calendar
-//        url: skdjf,
-//        success: function(response){
-//            confirmationSixtyAlert($(this));
-//            location.reload(); // need to test - should refresh page
-//        },
-//        error: function(request){
-//            errorAlert($(this));
-//            location.reload(); // need to test - should refresh page
-//        }
-//    })
-//}
 
-// NOT FUNCTIONAL - populates calendar data from google calendar
+// GET call to google API calendar to pull down all current information
 function ajaxCall(){
     $.ajax({
         type: 'GET',
@@ -138,14 +108,8 @@ function ajaxCall(){
         success: function(response){
             eventData = response.items;
 
-            console.log("EVENT DATA: ");
-            console.log(eventData);
-
             roomLoop();
             appendInfo();
-            //console.log(roomArray[1].available30);
-            //console.log(roomArray[1].available60);
-
             return eventData;
 
         },
@@ -155,25 +119,22 @@ function ajaxCall(){
     });
 }
 
+//time comparison statements when checking for 30 minute meeting availability -will flip flag to false if conflict exists
 function data30Loop(i){
     reserveThirtyTime = currentTime.getDate() + " " + monthNames[currentTime.getMonth()] + " " + currentTime.getFullYear() + " " + milThirtyTime + ":00";
     for(var j = 0; j < eventData.length; j++) {
 
         if (eventData[j].location == roomArray[i].roomNumber) {
             if (new Date(eventData[j].end.dateTime).getTime() > currentTime.getTime() && currentTime.getTime() > new Date(eventData[j].start.dateTime).getTime()) {
-                console.log(roomArray[i].roomNumber + " flag = false, 1");
                 return roomArray[i].available30 = false;
             }
             else if (currentTime.getTime() < new Date(eventData[j].start.dateTime).getTime() && new Date(eventData[j].start.dateTime).getTime() < Date.parse(reserveThirtyTime)) {
-                console.log(roomArray[i].roomNumber + " flag = false, 2");
                 return roomArray[i].available30 = false;
             }
             else if (currentTime.getTime() <= new Date(eventData[j].start.dateTime).getTime() && Date.parse(reserveThirtyTime) >= new Date(eventData[j].end.dateTime).getTime()) {
-                console.log(roomArray[i].roomNumber + " flag = false, 3");
                 return roomArray[i].available30 = false;
             }
             else if (currentTime.getTime() >= new Date(eventData[j].start.dateTime).getTime() && Date.parse(reserveThirtyTime) <= new Date(eventData[j].end.dateTime).getTime()) {
-                console.log(roomArray[i].roomNumber + " flag = false, 4");
                 return roomArray[i].available30 = false;
             }
         }
@@ -181,7 +142,7 @@ function data30Loop(i){
 }
 
 
-// checks for 60 min meeting and sets data flag to false if necessary
+//time comparison statement when checking for 60 minute meeting availability - will flip flag to false if conflict exists
 function data60Loop(i) {
     reserveSixtyTime = currentTime.getDate() + " " + monthNames[currentTime.getMonth()] + " " + currentTime.getFullYear() + " " + milSixtyTime + ":00";
     for (var j = 0; j < eventData.length; j++) {
@@ -212,10 +173,9 @@ function roomLoop(){
     console.log(roomArray);
 }
 
-////////// This Block Edited by Jim. Keep as is////////
+
 // custom dialogue box for reservation confirmation alert message
 function customConfirmationAlert(msg) {
-    //console.log("customConf coming up");
     var styler = document.createElement("div");
     styler.setAttribute("id","confirmationPopUp");
     styler.setAttribute("class","popUp");
@@ -228,8 +188,6 @@ function customConfirmationAlert(msg) {
 
 // confirms a ~30 minute meeting has been booked
 function confirmationThirtyAlert(room) {
-    //console.log("room");
-    //console.log(room);
     customConfirmationAlert("You have booked <br><span class='roomHighlight'>" + room.attr('id') + "</span> through " + thirtyTime);
 }
 
@@ -274,11 +232,7 @@ function blankPageMessage(){
 
 // loops through room array to append available conference rooms to the page
 function appendInfo(){
-
-    //buttonTime();
-    //console.log("room array: ");
-    //console.log(roomArray);
-
+    //checks to ensure there is at least one meeting room available
     blankPageMessage();
 
     for(var i = 0; i < roomArray.length; i++){
@@ -292,13 +246,12 @@ function appendInfo(){
         var isLongRoom = "";
         if(roomArray[i].roomNumber.length > 8){isLongRoom = " longRoom"}
         //if the room is available for at least 1/2 hour then append it
-        //if the room fis available for less than one hour append it else "unavailable"
+        //if the room is available for less than one hour append it else "unavailable"
         if(roomArray[i].available30 == true) {
             $('#rooms').append("<div class='roomBlock' id='" + roomArray[i].roomNumber + "'><div class='roomInfo'><h2 class='room text" + isLongRoom + "'>" + roomArray[i].roomNumber + "</h2><div class='icons'>" + computerIcon(i) + "<div class='icon theCapacityNum" + digits + "'>" + roomArray[i].capacity + "</div></div></div><div class='bookers'><button class='thirty btn btn-book bookerA' id='" + roomArray[i].roomNumber + "'><span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>" + thirtyTime + "</button>" + assign60Button(i) + "</div></div></div>");
             //if room contains a computer then append the computer icon
         }else {
-            //console.log(roomArray[i].roomNumber + " " + roomArray[i].available30);
-            //console.log(roomArray[i].roomNumber + 'not appended');
+
         }
     }
 }
@@ -316,7 +269,7 @@ function assign60Button(i){
     }
 }
 
-// refreshes page every quarter hour
+// refreshes page every quarter hour to pull down the new information
 function autoRefresh(minutes, seconds) {
     var now = new Date();
     var then = new Date();
@@ -338,12 +291,15 @@ $(document).ready(function(){
     buttonTime();
     ajaxCall();
 
-    // triggers to refresh page on each quarter hour
+    // triggers to refresh page on each quarter hour - this currently does not work when hosted on a free heroku account
+    // as it does not allow the application to "sleep". Once this application is not hosted on a free heroku account
+    //this functionality should be added back in so that the application will automatically refresh every quarter hour again.
     /*autoRefresh(00,0);
     autoRefresh(15,0);
     autoRefresh(30,0);
     autoRefresh(45,0);*/
 
+    //functionality when the button for the 30 minute meeting reservation
     $('#rooms').on('click', ".thirty", function(){
         var btn=$(this);
         var postLocation = $(this).attr("id");
@@ -357,10 +313,10 @@ $(document).ready(function(){
         var overlay = $("<div style='width:10000px; height: 9999px; margin-left: -5000px; top: 0; z-index: 100; position: absolute; background: lightgray; opacity: 0.5; text-align: center; font-size: large; padding-top: 25%; font-weight: bold;'></div>");
         $("body").append(overlay);
     });
+    //functionality when the button for the 60 minute meeting reservation
     $('#rooms').on('click', ".sixty", function(){
         var btn=$(this);
         var postLocation = $(this).attr("id");
-        //console.log("hey this is postlocation: " + postLocation);
         postSixtyEvent = {
             summary: 'squatter@tpt.org',
             location: postLocation,
@@ -370,11 +326,10 @@ $(document).ready(function(){
         bookRoomSixty(btn);
         var overlay = $("<div style='width:10000px; height: 9999px; margin-left: -5000px; top: 0; z-index: 100; position: absolute; background: lightgray; opacity: 0.5; text-align: center; font-size: large; padding-top: 25%; font-weight: bold;'></div>");
         $("body").append(overlay);
-        //confirmationSixtyAlert($(this));
-        //roomConfirmationSixty();
+
     });
 
-//// This is temporary by Jim for testing purposes ///////
+//// allows testing of the error popup without having to create a true conflict ///////
     $('#rooms').on('click', ".computerStatusIcon", function(){
         var overlay = $("<div style='width:10000px; height: 9999px; margin-left: -5000px; top: 0; z-index: 100; position: absolute; background: lightgray; opacity: 0.5; text-align: center; font-size: large; padding-top: 25%; font-weight: bold;'></div>");
         $("body").append(overlay);
