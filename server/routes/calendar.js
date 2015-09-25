@@ -1,18 +1,18 @@
 // use this block for development
-/*var googleConfig = {
+var googleConfig = {
  clientID: '270120115745-e2n1h3h8aufb1brf05hbin6r54orduop.apps.googleusercontent.com',
  clientSecret: 'uwWUU7VuuVSxZwZ5GT132DHv',
  calendarId: 'tpt.roomer@gmail.com',
  redirectURL: 'http://localhost:3000/auth'
- };*/
+ };
 
 // use this block for heroku
-var googleConfig = {
+/*var googleConfig = {
     clientID: '721997656029-ltfbn93eoag67dtfd2vmpok1pgpqltnd.apps.googleusercontent.com',
     clientSecret: 'tU-MvIgxQskkYgXJ89uoko-v',
     calendarId: 'tpt.roomer@gmail.com',
     redirectURL: 'https://tpt-demo.herokuapp.com/auth'
-};
+};*/
 
 var express = require('express');
 var moment = require('moment');

@@ -8,14 +8,19 @@ body {
     font-family: GothaMed, serif;
 }
 
+h2 {
+    text-align: center;
+}
+
+span {
+    vertical-align: text-top;
+}
+
 .roomHighlight {
     font-size: 125%;
     color: #000;
     font-weight: 900;
     line-height: .8;
-}
-h2{
-  text-align: center;
 }
 
 #appTitle {
@@ -42,10 +47,6 @@ h2{
     margin: 6px auto;
     color: #000;
     float: left;
-}
-
-span {
-    vertical-align: text-top;
 }
 
 /*probably not using these three*/

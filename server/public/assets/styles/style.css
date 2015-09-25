@@ -3,16 +3,20 @@
     src: url(../fonts/GothaMed.ttf);
 }
 
+body {
+    background-color: #000;
+    font-family: GothaMed, serif;
+}
+
+span {
+    vertical-align: text-top;
+}
+
 .roomHighlight {
     font-size: 125%;
     color: #000;
     font-weight: 900;
     line-height: .8;
-}
-
-body {
-    background-color: #000;
-    font-family: GothaMed, serif;
 }
 
 #appTitle {
@@ -39,10 +43,6 @@ body {
     margin: 6px auto;
     color: #000;
     float: left;
-}
-
-span {
-    vertical-align: text-top;
 }
 
 /*probably not using these three*/

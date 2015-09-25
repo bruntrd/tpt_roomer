@@ -245,9 +245,7 @@ function computerIcon(i){
     return '<div class="icon noComputerStatusIcon"></div>';
 }
 
-
-////////// The Block Edited by Jim. Keep as is////////
-// error message if someone tries to book a room that has JUST been booked by someone else.
+// error message if someone tries to book a room that has been booked by someone else since page-load..
 function errorAlert(room) {
     var styler = document.createElement("div");
     styler.setAttribute("id","denialPopUp");
@@ -268,6 +266,8 @@ function blankPageMessage(){
             trueArray.push(roomArray[k].roomNumber);
         }
     }
+    console.log("room array then true array:");
+    console.log(roomArray);
     console.log(trueArray);
     if (trueArray.length == 0){
         $('#rooms').append('<div id="denialPopUp"><div><h2>Sorry!</h2><div id="popUpNoBox">There are currently no rooms available to reserve.</div></div></div>')
