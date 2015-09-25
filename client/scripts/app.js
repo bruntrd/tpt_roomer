@@ -238,8 +238,10 @@ function appendInfo(){
     for(var i = 0; i < roomArray.length; i++){
         //checks capacity and sets a class accordingly.
         var digits = "";
-        if(roomArray[i].capacity > 9){
+        if(roomArray[i].capacity > 9 && roomArray[i].capacity < 20) {
             digits = " digits2";
+        } else if (roomArray[i].capacity > 19) {
+            digits = ""
         } else
             digits = " digits1";
         //checks for the number of characters in a room title and adds a class if it's more than 11

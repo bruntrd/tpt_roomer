@@ -109,7 +109,6 @@ span {
     margin: 2px 5px;
 }
 
-
 /*below here is the lg media style, >700px wide, default*/
 body {
     max-width: 775px;
@@ -167,6 +166,10 @@ body {
 
 .digits1 {
     padding: 0 13px;
+}
+
+.digits2 {
+    padding-right: 6px;
 }
 
 .bookers {
@@ -234,15 +237,10 @@ body {
     }
 
     .theCapacityNum {
-        padding: 0 1px;
         height: 38px;
         font-size: 28px;
         width: 76px;
         line-height: 1.3;
-    }
-
-    .digits1 {
-        padding-right: 13px;
     }
 
     .bookers {

@@ -37,7 +37,7 @@ span {
 
 .roomBlock {
     border-radius: 5px;
-    background-color: #fff;
+    background-color: #41a8c6;
     margin: 5px 0 0 0;
     display: inline-block;
     width: 100%;
@@ -45,7 +45,7 @@ span {
 
 .room {
     margin: 6px auto;
-    color: #000;
+    color: #fff;
     float: left;
 }
 
@@ -153,8 +153,8 @@ body {
 
 .theCapacityNum {
     text-align: right;
-    color: #fff;
-    background-image: url(../images/numberContainer-BlueBg.svg);
+    color: #41a8c6;
+    background-image: url(../images/numberContainer.svg);
     background-repeat: no-repeat;
     padding: 0 1px;
     width: 90px;
