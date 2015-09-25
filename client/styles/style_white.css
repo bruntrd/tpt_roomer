@@ -49,19 +49,6 @@ span {
     float: left;
 }
 
-/*probably not using these three*/
-.availYellow {
-    color: #000;
-}
-
-.availRed {
-    color: #fcca00;
-}
-
-.availGreen {
-    color: darkgreen;
-}
-
 .btn {
     border: 1px solid #fff;
 }
@@ -86,10 +73,6 @@ span {
     margin-bottom: 2px;
 }
 
-/*.bookers {
-    display: inline-block;
-}*/
-
 .capacity {
     position: relative;
 }
@@ -105,29 +88,11 @@ span {
     z-index: 200;
 }
 
-#logoHeader {
-    text-align: center;
-    margin: 20px 0 12px;
-}
-
 #confirmDoubleBook {
     float: right;
     margin: 4px;
     width: 50%;
     background-color: #e03643;
-}
-
-.popUp {
-    border-radius: 4px;
-    position: fixed;
-    text-align: center;
-    font-size: 25px;
-    box-shadow: 8px 8px 5px rgba(0, 0, 0, 0.7);
-    top: 40%;
-    left: 50%;
-    width: 410px;
-    margin-left: -205px;
-    margin-top: -70px;
 }
 
 #popUpYesBox,#popUpNoBox {
@@ -145,14 +110,43 @@ span {
 }
 
 
-/*below here is the lg media style default*/
+/*below here is the lg media style, >700px wide, default*/
 body {
     max-width: 775px;
     margin: 0 auto;
 }
+
+#logoHeader {
+    text-align: center;
+    margin: 20px 0 12px;
+}
+
+.room {
+    margin: 7px;
+    font-size: 40px;
+}
+
+.roomInfo {
+    display: inline-flex;
+    float: left;
+}
+
+.icons {
+    margin: 6px 0;
+    float: left;
+    width: 150px;
+}
+
+.icon {
+    height: 45px;
+    display: block;
+    float:left;
+}
+
 .noComputerStatusIcon {
     display: none;
 }
+
 .computerStatusIcon {
     padding: 1px;
     margin-right: 5px;
@@ -170,49 +164,49 @@ body {
     display: inline-block;
     line-height: 1.3;
 }
+
 .digits1 {
     padding: 0 13px;
 }
+
 .bookers {
     display: inline;
     float: right;
     margin: 7px 4px 0;
     width: 230px;
 }
-.roomInfo {
-    display: inline-flex;
-    float: left;
-}
+
 .bookerA,.bookerB {
     height: 45px;
     font-size: 22px;
     width: 110px;
     padding: 3px;
 }
+
 .bookerA {
     float: none;
     margin-right: 3px;
 }
+
 .bookerB {
     float: none;
 }
+
 .btn-disabled {
     font-size: 14px;
 }
-.room {
-    margin: 7px;
-    font-size: 40px;
-}
 
-.icons {
-    margin: 6px 0;
-    float: left;
-    width: 150px;
-}
-.icon {
-    height: 45px;
-    display: block;
-    float:left;
+.popUp {
+    border-radius: 4px;
+    position: fixed;
+    text-align: center;
+    font-size: 25px;
+    box-shadow: 8px 8px 5px rgba(0, 0, 0, 0.7);
+    top: 40%;
+    left: 50%;
+    width: 410px;
+    margin-left: -205px;
+    margin-top: -70px;
 }
 
 @media (max-width: 700px) {
@@ -220,28 +214,23 @@ body {
         max-width: 635px;
         margin: 0 auto;
     }
+
     #logoHeader {
         text-align: center;
         margin: 16px 0 4px;
     }
-    .bookers {
-        margin: 7px 0 0;
-        width: 192px;
+
+    .room {
+        margin: 7px;
+        font-size: 30px;
     }
+
     .icons {
         width: 119px;
     }
+
     .icon {
         height: 38px;
-    }
-    .bookerA,.bookerB {
-        height: 38px;
-        font-size: 20px;
-        width: 93px;
-        padding: 2px;
-    }
-    .bookerA {
-        margin-right: 3px;
     }
 
     .theCapacityNum {
@@ -251,28 +240,45 @@ body {
         width: 76px;
         line-height: 1.3;
     }
-    .btn-disabled {
-        font-size: 14px;
-    }
-    .room {
-        margin: 7px;
-        font-size: 30px;
-    }
+
     .digits1 {
         padding-right: 13px;
     }
+
+    .bookers {
+        margin: 7px 0 0;
+        width: 192px;
+    }
+
+    .bookerA,.bookerB {
+        height: 38px;
+        font-size: 20px;
+        width: 93px;
+        padding: 2px;
+    }
+
+    .bookerA {
+        margin-right: 3px;
+    }
+
+    .btn-disabled {
+        font-size: 14px;
+    }
+
     .popUp {
         top: 35%;
     }
 }
+
 @media (max-width: 560px) {
-    .longRoom {
-        font-size: 20px;
-        margin-top: 15px;
-    }
     #logoHeader {
         text-align: center;
         margin: 14px 0 2px;
+    }
+
+    .longRoom {
+        font-size: 20px;
+        margin-top: 15px;
     }
 }
 
@@ -281,30 +287,52 @@ body {
         max-width: 420px;
         margin: 0 auto;
     }
-    .bookerA {
-        margin-bottom: 4px;
-    }
+
     #logoHeader {
         text-align: center;
         margin: 10px 0 6px;
     }
+
+    .roomBlock {
+        margin: 2px 0 0 0;
+        width: 100%;
+        padding: 5px 10px;
+    }
+
     .longRoom {
         font-size: 30px;
     }
+
+    .room {
+        font-size: 26px;
+        margin: 5px 0 5px 2px;
+    }
+
+    .roomInfo {
+        display: inline-block;
+        float: left;
+    }
+
+    .icons {
+        float: none;
+    }
+
+    .theCapacityNum {
+        width: 76px;
+    }
+
     .noComputerStatusIcon {
         width: 38px;
         height: 38px;
         margin-right: 1px;
         display: inline-block;
     }
-    .roomBlock {
-        margin: 2px 0 0 0;
-        width: 100%;
-        padding: 5px 10px;
+
+    .computerStatusIcon {
+        width: 38px;
+        margin-right: 1px;
     }
-    .bookerA {
-        margin-bottom: 2px;
-    }
+
     .bookers {
         display: inline-block;
         vertical-align: middle;
@@ -312,24 +340,11 @@ body {
         margin: 3px 0 3px;
         width: 100px;
     }
-    .roomInfo {
-        display: inline-block;
-        float: left;
+
+    .bookerA {
+        margin-bottom: 2px;
     }
-    .room {
-        font-size: 26px;
-        margin: 5px
-    }
-    .icons {
-        float: none;
-    }
-    .computerStatusIcon {
-        width: 38px;
-        margin-right: 1px;
-    }
-    .theCapacityNum {
-        width: 76px;
-    }
+
     .popUp {
         top: 30%;
         left: 50%;

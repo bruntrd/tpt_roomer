@@ -158,16 +158,15 @@ function ajaxCall(){
 function data30Loop(i){
     reserveThirtyTime = currentTime.getDate() + " " + monthNames[currentTime.getMonth()] + " " + currentTime.getFullYear() + " " + milThirtyTime + ":00";
     for(var j = 0; j < eventData.length; j++) {
+
         if (eventData[j].location == roomArray[i].roomNumber) {
             if (new Date(eventData[j].end.dateTime).getTime() > currentTime.getTime() && currentTime.getTime() > new Date(eventData[j].start.dateTime).getTime()) {
                 console.log(roomArray[i].roomNumber + " flag = false, 1");
                 return roomArray[i].available30 = false;
-
             }
             else if (currentTime.getTime() < new Date(eventData[j].start.dateTime).getTime() && new Date(eventData[j].start.dateTime).getTime() < Date.parse(reserveThirtyTime)) {
                 console.log(roomArray[i].roomNumber + " flag = false, 2");
                 return roomArray[i].available30 = false;
-
             }
             else if (currentTime.getTime() <= new Date(eventData[j].start.dateTime).getTime() && Date.parse(reserveThirtyTime) >= new Date(eventData[j].end.dateTime).getTime()) {
                 console.log(roomArray[i].roomNumber + " flag = false, 3");
@@ -209,6 +208,8 @@ function roomLoop(){
         data30Loop(i);
         data60Loop(i);
     }
+    console.log("room array:");
+    console.log(roomArray);
 }
 
 ////////// This Block Edited by Jim. Keep as is////////
@@ -266,9 +267,6 @@ function blankPageMessage(){
             trueArray.push(roomArray[k].roomNumber);
         }
     }
-    console.log("room array then true array:");
-    console.log(roomArray);
-    console.log(trueArray);
     if (trueArray.length == 0){
         $('#rooms').append('<div id="denialPopUp"><div><h2>Sorry!</h2><div id="popUpNoBox">There are currently no rooms available to reserve.</div></div></div>')
     }
