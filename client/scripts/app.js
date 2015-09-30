@@ -296,10 +296,10 @@ $(document).ready(function(){
     // triggers to refresh page on each quarter hour - this currently does not work when hosted on a free heroku account
     // as it does not allow the application to "sleep". Once this application is not hosted on a free heroku account
     //this functionality should be added back in so that the application will automatically refresh every quarter hour again.
-    /*autoRefresh(00,0);
+    autoRefresh(00,0);
     autoRefresh(15,0);
     autoRefresh(30,0);
-    autoRefresh(45,0);*/
+    autoRefresh(45,0);
 
     //functionality when the button for the 30 minute meeting reservation
     $('#rooms').on('click', ".thirty", function(){
